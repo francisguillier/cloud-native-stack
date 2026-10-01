@@ -316,7 +316,7 @@
         - helm repo add mellanox https://mellanox.github.io/network-operator --force-update
         - helm repo update
         - kubectl label nodes --all node-role.kubernetes.io/master- --overwrite
-        - helm install -f $PWD/cloud-native-core/playbooks/network-operator-values.yaml -n network-operator --create-namespace --wait network-operator mellanox/network-operator
+        - helm install -f $PWD/cloud-native-core/playbooks/network-operator-values.yaml -n network-operator --create-namespace --wait network-operator mellanox/network-operator --version {{ network_operator_version | default('26.7.0') }}
         - kubectl apply -f $PWD/cloud-native-core/playbooks/networkdefinition.yaml
 
    - name: Checking if GPU Operator is installed

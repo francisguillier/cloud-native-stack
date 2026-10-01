@@ -10,7 +10,7 @@ calico_version: "3.25.0"
 flannel_version: "0.20.2"
 helm_version: "3.11.0"
 gpu_operator_version: "26.7.1"
-network_operator_version: "1.4.0"
+network_operator_version: "26.7.0"
 local_path_provisioner: "0.0.24"
 
 # GPU Operator Values

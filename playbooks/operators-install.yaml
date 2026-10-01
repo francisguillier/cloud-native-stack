@@ -126,15 +126,22 @@
      delay: 5
      until: network_operator is succeeded
 
+   - name: Set Network Operator Kubernetes support range
+     when: enable_network_operator == true
+     set_fact:
+       network_operator_k8s_min: "{{ '1.32.0' if network_operator_version is version('26.7.0', '>=') else '1.31.0' }}"
+       network_operator_k8s_max_exclusive: "{{ '1.37.0' if network_operator_version is version('26.7.0', '>=') else '1.36.0' }}"
+       network_operator_k8s_range: "{{ '1.32 through 1.36' if network_operator_version is version('26.7.0', '>=') else '1.31 through 1.35' }}"
+
    - name: Validate Network Operator Kubernetes support
      when:
        - enable_network_operator == true
-       - k8s_version is not version('1.31.0', '>=') or k8s_version is not version('1.36.0', '<')
+       - k8s_version is not version(network_operator_k8s_min, '>=') or k8s_version is not version(network_operator_k8s_max_exclusive, '<')
      fail:
        msg: |
          Unsupported Network Operator and Kubernetes combination.
 
-         Network Operator {{ network_operator_version }} supports Kubernetes 1.31 through 1.35.
+         Network Operator {{ network_operator_version }} supports Kubernetes {{ network_operator_k8s_range }}.
          CNS {{ cns_version }} is configured to install Kubernetes {{ k8s_version }}.
 
          Please use a CNS/Kubernetes version supported by Network Operator {{ network_operator_version }},
@@ -143,7 +150,7 @@
    - name: Report Network Operator Kubernetes support
      when:
        - enable_network_operator == true
-       - k8s_version is version('1.31.0', '>=') and k8s_version is version('1.36.0', '<')
+       - k8s_version is version(network_operator_k8s_min, '>=') and k8s_version is version(network_operator_k8s_max_exclusive, '<')
      debug:
        msg: "Network Operator {{ network_operator_version }} is supported with Kubernetes {{ k8s_version }}."
 

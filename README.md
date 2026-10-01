@@ -48,9 +48,11 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 | CRI-O                     | 1.36.1  | 1.35.4  | 1.34.9  | 1.33.12 |
 | CNI (Calico)              | 3.32.0  | 3.32.0  | 3.32.0  | 3.32.0  |
 | NVIDIA GPU Operator       | 26.7.1  | 26.7.1  | 26.7.1  | 26.7.1  |
-| NVIDIA Network Operator   | N/A | 26.4.0 | 26.4.0 | 26.1.0 |
+| NVIDIA Network Operator   | 26.7.0  | 26.7.0  | 26.7.0  | 26.7.0  |
 | NVIDIA Data Center Driver | 580.178.04 | 580.178.04 | 580.178.04 | 580.178.04 |
 | Helm                      | 4.2.2   | 4.2.2   | 4.2.2   | 4.1.4   |
+
+NVIDIA Network Operator defaults to `26.7.0` in all playbook values files. To select another release, set `network_operator_version` in the values file for your CNS version. See the [Network Operator 26.7.0 release notes](https://docs.nvidia.com/networking/display/kubernetes2670/release-notes.html).
 
 NVIDIA Data Center Driver defaults to `580.178.04` in all playbook values files. To select another release, set `gpu_driver_version` in the values file for your CNS version. See the [NVIDIA Data Center Driver archive](https://developer.nvidia.com/datacenter-driver-archive).
 
@@ -59,7 +61,7 @@ containerd defaults to `2.4.1` in all playbook values files. To select another r
 GPU Operator defaults to `26.7.1` in all playbook values files. To select another release, set `gpu_operator_version` in the values file for your CNS version. See the [GPU Operator 26.7 release notes](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/26.7/release-notes.html) and [platform support matrix](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/26.7/platform-support.html) for component versions and supported configurations.
 
 > NOTE: CNS 18.0 and 19.0 target Ubuntu 24.04 and Ubuntu 26.04. CNS 16.2 and 17.1 target Ubuntu 24.04.
-> NOTE: NVIDIA Network Operator is N/A for CNS 19.0 because CNS 19.0 uses Kubernetes 1.36.2, while Network Operator 26.4.0 supports Kubernetes 1.31 through 1.35.
+> NOTE: NVIDIA Network Operator 26.7.0 supports Kubernetes 1.32 through 1.36, covering the CNS versions in this matrix. See the [Network Operator platform support matrix](https://docs.nvidia.com/networking/display/kubernetes2670/platform-support.html) for hardware and operating system requirements.
 
 > Note: Previous upstream Cloud Native Stack release information can be found [here](https://github.com/NVIDIA/cloud-native-stack/tree/25.7.2?tab=readme-ov-file#nvidia-cloud-native-stack-component-matrix)
 
