@@ -4,7 +4,7 @@ microk8s: no
 ## Components Versions
 # Container Runtime options are containerd, cri-o, cri-dockerd
 container_runtime: "containerd"
-containerd_version: "1.7.3"
+containerd_version: "2.4.1"
 containerd_max_concurrent_downloads: "5"
 crio_version: "1.26.4"
 cri_dockerd_version: "0.3.4"

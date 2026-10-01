@@ -3,7 +3,7 @@ cnc_version: 7.3
 ## Components Versions
 # Container Runtime options are containerd, cri-o
 container_runtime: "containerd"
-containerd_version: "1.6.16"
+containerd_version: "2.4.1"
 crio_version: "1.24.5"
 k8s_version: "1.24.10"
 calico_version: "3.25.0"

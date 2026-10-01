@@ -297,19 +297,53 @@
             create: yes
       when: "cnc_version == 6.0 or cnc_version == 5.0 or cnc_version == 4.2 or cnc_version == 4.1 or cnc_version == 4.0 and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_major_version'] == '20' and 'running' not in k8sup.stdout"
 
+    - name: Install dependencies for standalone containerd archives
+      become: true
+      when: "cnc_version in [4.0, 4.1, 4.2] and ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_major_version'] == '20' and 'running' not in k8sup.stdout"
+      block:
+        - name: Download runc
+          get_url:
+            url: https://github.com/opencontainers/runc/releases/download/v{{ runc_version | default('1.4.0') }}/runc.amd64
+            dest: /usr/local/sbin/runc
+            mode: '0755'
+
+        - name: Create CNI plugin directory
+          file:
+            path: /opt/cni/bin
+            state: directory
+            mode: '0755'
+
+        - name: Install CNI plugins
+          unarchive:
+            src: https://github.com/containernetworking/plugins/releases/download/v{{ cni_plugins_version | default('1.7.1') }}/cni-plugins-linux-amd64-v{{ cni_plugins_version | default('1.7.1') }}.tgz
+            dest: /opt/cni/bin
+            remote_src: yes
+
+        - name: Create containerd configuration directory
+          file:
+            path: /etc/containerd
+            state: directory
+            mode: '0755'
+
+        - name: Install containerd systemd service
+          get_url:
+            url: https://raw.githubusercontent.com/containerd/containerd/v{{ containerd_version | default('2.4.1') }}/containerd.service
+            dest: /etc/systemd/system/containerd.service
+            mode: '0644'
+
     - name: Install Containerd for NVIDIA Cloud Native Core 4.0
       become: true
       block:
-        - name: Download cri-containerd-cni
+        - name: Download containerd
           get_url:
-            url: https://github.com/containerd/containerd/releases/download/v1.4.6/cri-containerd-cni-1.4.6-linux-amd64.tar.gz
-            dest: /tmp/cri-containerd-cni-1.4.6-linux-amd64.tar.gz
+            url: https://github.com/containerd/containerd/releases/download/v{{ containerd_version | default('2.4.1') }}/containerd-static-{{ containerd_version | default('2.4.1') }}-linux-amd64.tar.gz
+            dest: /tmp/containerd-static-{{ containerd_version | default('2.4.1') }}-linux-amd64.tar.gz
             mode: 0664
 
-        - name: Untar cri-containerd-cni
+        - name: Untar containerd
           unarchive:
-            src: /tmp/cri-containerd-cni-1.4.6-linux-amd64.tar.gz
-            dest: /
+            src: /tmp/containerd-static-{{ containerd_version | default('2.4.1') }}-linux-amd64.tar.gz
+            dest: /usr/local/
             remote_src: yes
             extra_opts:
               - --no-overwrite-dir
@@ -334,16 +368,16 @@
     - name: Install Containerd for NVIDIA Cloud Native Core 4.1
       become: true
       block:
-        - name: Download cri-containerd-cni
+        - name: Download containerd
           get_url:
-            url: https://github.com/containerd/containerd/releases/download/v1.5.0/cri-containerd-cni-1.5.0-linux-amd64.tar.gz
-            dest: /tmp/cri-containerd-cni-1.5.0-linux-amd64.tar.gz
+            url: https://github.com/containerd/containerd/releases/download/v{{ containerd_version | default('2.4.1') }}/containerd-static-{{ containerd_version | default('2.4.1') }}-linux-amd64.tar.gz
+            dest: /tmp/containerd-static-{{ containerd_version | default('2.4.1') }}-linux-amd64.tar.gz
             mode: 0664
 
-        - name: Untar cri-containerd-cni
+        - name: Untar containerd
           unarchive:
-            src: /tmp/cri-containerd-cni-1.5.0-linux-amd64.tar.gz
-            dest: /
+            src: /tmp/containerd-static-{{ containerd_version | default('2.4.1') }}-linux-amd64.tar.gz
+            dest: /usr/local/
             remote_src: yes
             extra_opts:
               - --no-overwrite-dir
@@ -368,16 +402,16 @@
     - name: Install Containerd for NVIDIA Cloud Native Core 4.2
       become: true
       block:
-        - name: Download cri-containerd-cni
+        - name: Download containerd
           get_url:
-            url: https://github.com/containerd/containerd/releases/download/v1.5.8/cri-containerd-cni-1.5.8-linux-amd64.tar.gz
-            dest: /tmp/cri-containerd-cni-1.5.8-linux-amd64.tar.gz
+            url: https://github.com/containerd/containerd/releases/download/v{{ containerd_version | default('2.4.1') }}/containerd-static-{{ containerd_version | default('2.4.1') }}-linux-amd64.tar.gz
+            dest: /tmp/containerd-static-{{ containerd_version | default('2.4.1') }}-linux-amd64.tar.gz
             mode: 0664
 
-        - name: Untar cri-containerd-cni
+        - name: Untar containerd
           unarchive:
-            src: /tmp/cri-containerd-cni-1.5.8-linux-amd64.tar.gz
-            dest: /
+            src: /tmp/containerd-static-{{ containerd_version | default('2.4.1') }}-linux-amd64.tar.gz
+            dest: /usr/local/
             remote_src: yes
             extra_opts:
               - --no-overwrite-dir

@@ -28,7 +28,7 @@
       become: true
       when: cns_version >= 4.0
       shell: /usr/local/bin/containerd -v | awk '{print $3}'
-      register: containerd_version
+      register: installed_containerd_version
       ignore_errors: true
 
     - name: Check Kubernetes Version
@@ -488,7 +488,7 @@
         echo -e "  Components                          Installed Version    "
         echo -e "==========================================================================================="
         echo -e "GPU Operator Version                  {{ gpuoperator.stdout }}"
-        echo -e "Containerd Version                    {{ containerd_version.stdout }}"
+        echo -e "Containerd Version                    {{ installed_containerd_version.stdout }}"
         echo -e "Kubernetes Version                    {{ k8sversion.stdout }}"
         echo -e "Helm Version                          {{ helmversion.stdout }}"
         echo -e "Etcd Version                          {{ etcd_version.stdout }}"

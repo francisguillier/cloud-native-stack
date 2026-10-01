@@ -365,7 +365,7 @@
     - name: Install Containerd for NVIDIA Cloud Native Stack
       become: true
       block:
-        - name: Download cri-containerd-cni
+        - name: Download containerd
           get_url:
             url: https://github.com/containerd/containerd/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-linux-amd64.tar.gz
             dest: /tmp/containerd-{{ containerd_version }}-linux-amd64.tar.gz
@@ -375,7 +375,7 @@
           register: download_containerd
           until: download_containerd is succeeded
 
-        - name: Untar cri-containerd-cni
+        - name: Untar containerd
           unarchive:
             src: /tmp/containerd-{{ containerd_version }}-linux-amd64.tar.gz
             dest: /usr/local/
@@ -441,7 +441,7 @@
     - name: Install Containerd for NVIDIA Cloud Native Stack
       become: true
       block:
-        - name: Download cri-containerd-cni
+        - name: Download containerd
           get_url:
             url: https://github.com/containerd/containerd/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-linux-arm64.tar.gz
             dest: /tmp/containerd-{{ containerd_version }}-linux-arm64.tar.gz
@@ -451,7 +451,7 @@
           register: download_containerd_arm
           until: download_containerd_arm is succeeded
 
-        - name: Untar cri-containerd-cni
+        - name: Untar containerd
           unarchive:
             src: /tmp/containerd-{{ containerd_version }}-linux-arm64.tar.gz
             dest: /usr/local/
