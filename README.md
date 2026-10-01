@@ -49,7 +49,6 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 | CNI (Calico)              | 3.32.0  | 3.32.0  | 3.32.0  | 3.32.0  |
 | NVIDIA GPU Operator       | 26.3.2  | 26.3.2  | 26.3.2  | 26.3.1  |
 | NVIDIA Network Operator   | N/A | 26.4.0 | 26.4.0 | 26.1.0 |
-| NVIDIA KAI Scheduler      | 0.14.2  | 0.14.2  | 0.14.2  | 0.14.2  |
 | NVIDIA Data Center Driver | 580.126.20 | 580.126.20 | 580.126.20 | 580.126.20 |
 | Helm                      | 4.2.2   | 4.2.2   | 4.2.2   | 4.1.4   |
 
@@ -65,7 +64,6 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 - Kubernetes
   - [GPU Operator](https://github.com/NVIDIA/gpu-operator)
   - [Network Operator](https://github.com/Mellanox/network-operator)  
-  - [NVIDIA KAI Scheduler](https://github.com/NVIDIA/KAI-Scheduler/tree/main)
   - [FeatureGates](./playbooks/readme.md#enable-feature-gates-to-cloud-native-stack)
 - [MicroK8s on CNS](./playbooks/readme.md#enable-microk8s)
 - [Storage on CNS](./playbooks/readme.md#storage-on-cns)

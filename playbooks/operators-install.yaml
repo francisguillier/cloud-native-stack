@@ -827,7 +827,3 @@
      delay: 5
      register: add_nvidia_smi_alias
      until: add_nvidia_smi_alias is succeeded
-
-   - name: Install NVIDIA Kubernetes AI Scheduler
-     shell: helm upgrade -i kai-scheduler oci://ghcr.io/kai-scheduler/kai-scheduler/kai-scheduler -n kai-scheduler --create-namespace --version v{{ kai_scheduler_version }} --set "global.gpuSharing=true"
-     when: enable_kai_scheduler == true

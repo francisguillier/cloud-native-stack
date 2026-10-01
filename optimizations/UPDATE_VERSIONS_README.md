@@ -95,7 +95,7 @@ export GITHUB_TOKEN="ghp_your_token_here"
 - Grafana Operator, Elasticsearch
 - GPU Operator, Network Operator
 - DRA Driver
-- Dynamo, KAI Scheduler
+- Dynamo
 
 ### Version-Locked Components
 - Kubernetes (maintains major.minor)

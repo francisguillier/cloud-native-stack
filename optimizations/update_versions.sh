@@ -113,7 +113,6 @@ update_standard_repos() {
     repos[network_operator]="Mellanox/network-operator"
     repos[k8s_dra_driver_gpu]="NVIDIA/k8s-dra-driver-gpu"
     repos[dynamo]="ai-dynamo/dynamo"
-    repos[kai_scheduler]="NVIDIA/KAI-Scheduler"
     repos[flannel]="flannel-io/flannel"
 
     declare -A yaml_keys
@@ -123,7 +122,6 @@ update_standard_repos() {
     yaml_keys[network_operator]="network_operator_version"
     yaml_keys[k8s_dra_driver_gpu]="dra_driver_version"
     yaml_keys[dynamo]="dynamo_release_version"
-    yaml_keys[kai_scheduler]="kai_scheduler_version"
     yaml_keys[elasticsearch]="elastic_stack"
     yaml_keys[plugins]="cni_plugins_version"
     yaml_keys[local_path_provisioner]="local_path_provisioner"

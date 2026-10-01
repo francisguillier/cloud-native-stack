@@ -122,7 +122,6 @@ flannel_version: "0.25.6"
 helm_version: "4.0.4"
 gpu_operator_version: "25.10.1"
 network_operator_version: "25.7.0"
-kai_scheduler_version: "0.10.2"
 local_path_provisioner: "0.0.31"
 nfs_provisioner: "4.0.18"
 metallb_version: "0.15.3"
@@ -186,8 +185,6 @@ k8s_gpg_key: "https://pkgs.k8s.io/core:/stable:/v1.33/rpm/repodata/repomd.xml.ke
 k8s_apt_ring: "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
 k8s_registry: "registry.k8s.io"
 
-# Enable NVIDIA Kubernetes AI Scheduler
-enable_kai_scheduler: no
 
 
 
@@ -304,90 +301,6 @@ $ nano cns_values_16.1.yaml
 cns_version: 16.1
 
 enable_cdi: yes
-```
-
-## Enable Kubernetes AI Scheduler
-
-If you wnt to enable Kubernetes AI Scheduler on Cloud Native Stack, you can enable the configuration in `cns_values_xx.yaml` and trigger the installation
-
-Example:
-```
-$ nano cns_values_16.1.yaml
-
-cns_version: 16.1
-
-enable_kai_scheduler: yes
-```
-For more information, Refer [NVIDIA KAI Scheduler](https://github.com/NVIDIA/KAI-Scheduler/tree/main)
-
-sample validation
-
-create queue.yaml with below content 
-```
-apiVersion: scheduling.run.ai/v2
-kind: Queue
-metadata:
-  name: default
-spec:
-  resources:
-    cpu:
-      quota: -1
-      limit: -1
-      overQuotaWeight: 1
-    gpu:
-      quota: -1
-      limit: -1
-      overQuotaWeight: 1
-    memory:
-      quota: -1
-      limit: -1
-      overQuotaWeight: 1
----
-apiVersion: scheduling.run.ai/v2
-kind: Queue
-metadata:
-  name: test
-spec:
-  parentQueue: default
-  resources:
-    cpu:
-      quota: -1
-      limit: -1
-      overQuotaWeight: 1
-    gpu:
-      quota: -1
-      limit: -1
-      overQuotaWeight: 1
-    memory:
-      quota: -1
-      limit: -1
-      overQuotaWeight: 1
-```
-
-create gpu-sharing.yaml with below content 
-
-```
-apiVersion: v1
-kind: Pod
-metadata:
-  name: gpu-sharing
-  labels:
-    kai.scheduler/queue: test
-  annotations:
-    gpu-fraction: "0.5"
-spec:
-  schedulerName: kai-scheduler
-  containers:
-    - name: ubuntu
-      image: ubuntu
-      args: ["sleep", "infinity"]
-```
-
-apply the changes
-
-```
-kubectl apply -f queue.yaml
-kubectl apply -f gpu-sharing.yaml
 ```
 
 ### Enable MicroK8s 
