@@ -9,7 +9,7 @@ k8s_version: "1.23.14"
 calico_version: "3.24.1"
 flannel_version: "0.20.0"
 helm_version: "3.10.2"
-gpu_operator_version: "22.9.1"
+gpu_operator_version: "26.7.1"
 network_operator_version: "1.4.0"
 
 # GPU Operator Values

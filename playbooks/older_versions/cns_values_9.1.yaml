@@ -11,7 +11,7 @@ k8s_version: "1.26.3"
 calico_version: "3.25.1"
 flannel_version: "0.21.4"
 helm_version: "3.11.3"
-gpu_operator_version: "23.3.2"
+gpu_operator_version: "26.7.1"
 network_operator_version: "23.4.0"
 local_path_provisioner: "0.0.24"
 
