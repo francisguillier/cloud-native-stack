@@ -30,7 +30,7 @@ elastic_stack: "8.14.1"
 # GPU Operator Values
 enable_gpu_operator: yes
 confidential_computing: no
-gpu_driver_version: "525.105.17"
+gpu_driver_version: "580.178.04"
 use_open_kernel_module: no
 enable_mig: no
 mig_profile: all-disabled

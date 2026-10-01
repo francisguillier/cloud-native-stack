@@ -49,8 +49,10 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 | CNI (Calico)              | 3.32.0  | 3.32.0  | 3.32.0  | 3.32.0  |
 | NVIDIA GPU Operator       | 26.7.1  | 26.7.1  | 26.7.1  | 26.7.1  |
 | NVIDIA Network Operator   | N/A | 26.4.0 | 26.4.0 | 26.1.0 |
-| NVIDIA Data Center Driver | 580.126.20 | 580.126.20 | 580.126.20 | 580.126.20 |
+| NVIDIA Data Center Driver | 580.178.04 | 580.178.04 | 580.178.04 | 580.178.04 |
 | Helm                      | 4.2.2   | 4.2.2   | 4.2.2   | 4.1.4   |
+
+NVIDIA Data Center Driver defaults to `580.178.04` in all playbook values files. To select another release, set `gpu_driver_version` in the values file for your CNS version. See the [NVIDIA Data Center Driver archive](https://developer.nvidia.com/datacenter-driver-archive).
 
 containerd defaults to `2.4.1` in all playbook values files. To select another release, set `containerd_version` in the values file for your CNS version. See the [containerd 2.4.1 release notes](https://github.com/containerd/containerd/releases/tag/v2.4.1).
 

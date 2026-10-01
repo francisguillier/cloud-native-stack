@@ -133,7 +133,7 @@ elastic_stack: "9.2.1"
 # GPU Operator Values
 enable_gpu_operator: yes
 confidential_computing: no
-gpu_driver_version: "580.105.08"
+gpu_driver_version: "580.178.04"
 use_open_kernel_module: no
 enable_mig: no
 mig_profile: all-disabled
@@ -389,7 +389,7 @@ What this does:
 - AMD: probes `kvm_amd.sev_snp` — on modern kernels, skips the legacy AMDSEV custom-kernel build
 - Installs k8s, containerd, helm
 - Installs Kata via `helm install kata-deploy oci://ghcr.io/kata-containers/kata-deploy-charts/kata-deploy --version 3.32.0`
-- Installs GPU Operator: `--set sandboxWorkloads.enabled=true --set sandboxWorkloads.mode=kata --set nfd.enabled=true --set nfd.nodefeaturerules=true --version=v26.7.1`
+- Installs GPU Operator: `--set driver.version=580.178.04 --set sandboxWorkloads.enabled=true --set sandboxWorkloads.mode=kata --set nfd.enabled=true --set nfd.nodefeaturerules=true --version=v26.7.1`
 - Configures kubelet `runtimeRequestTimeout: 1200s` and feature gates `KubeletPodResourcesGet=true`, `RuntimeClassInImageCriApi=true`
 - Detects Hopper HGX nodes with 8 H100/H200 SXM GPUs and at least 4 NVSwitches, then sets
   `nvidia.com/cc.mode=ppcie` before GPU Operator installation for multi-GPU passthrough

@@ -11,7 +11,7 @@ network_operator_version: "1.2.0"
 
 # GPU Operator Values
 enable_gpu_operator: yes
-gpu_driver_version: "515.48.07"
+gpu_driver_version: "580.178.04"
 enable_mig: no
 mig_profile: all-disabled
 mig_strategy: single

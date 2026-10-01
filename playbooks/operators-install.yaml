@@ -458,6 +458,7 @@
            helm upgrade --install gpu-operator --wait --timeout 30m \
              -n gpu-operator --create-namespace \
              nvidia/gpu-operator \
+             --set driver.version={{ gpu_driver_version }} \
              --set sandboxWorkloads.enabled=true \
              --set sandboxWorkloads.mode=kata \
              --set sandboxWorkloads.defaultWorkload=vm-passthrough \
@@ -578,7 +579,7 @@
 
    - name: Installing the GPU Operator with NVIDIA Docker on NVIDIA Cloud Native Stack
      when: "confidential_computing == false and enable_gpu_operator == true and cns_docker == true and cns_nvidia_driver == false and  enable_mig == false and enable_vgpu == false and enable_rdma == false and ngc_registry_password == '' and container_runtime != 'cri-dockerd'"
-     shell: helm upgrade --install gpu-operator --version {{ gpu_operator_version }} --values {{ ansible_facts['user_dir'] }}/values.yaml --create-namespace --namespace nvidia-gpu-operator '{{ gpu_operator_helm_chart }}' --timeout 30m --wait
+     shell: helm upgrade --install gpu-operator --version {{ gpu_operator_version }} --values {{ ansible_facts['user_dir'] }}/values.yaml --create-namespace --namespace nvidia-gpu-operator '{{ gpu_operator_helm_chart }}' --timeout 30m --wait --set driver.version={{ gpu_driver_version }}
      retries: 5
      delay: 5
      register: install_gpu_operator_docker
@@ -586,7 +587,7 @@
 
    - name: Installing the GPU Operator with NVIDIA Docker on NVIDIA Cloud Native Stack with cri-dockerd runtime
      when: "confidential_computing == false and enable_gpu_operator == true and cns_docker == true and cns_nvidia_driver == false and  enable_mig == false and enable_vgpu == false and enable_rdma == false and ngc_registry_password == '' and container_runtime == 'cri-dockerd'"
-     shell: helm upgrade --install gpu-operator --version {{ gpu_operator_version }} --values {{ ansible_facts['user_dir'] }}/values.yaml --create-namespace --namespace nvidia-gpu-operator '{{ gpu_operator_helm_chart }}' --set toolkit.env[0].name=CONTAINERD_RUNTIME_CLASS --set toolkit.env[0].value=nvidia --set toolkit.env[1].name=CONTAINERD_SET_AS_DEFAULT --set-string toolkit.env[1].value=false --set toolkit.env[2].name=NVIDIA_RUNTIME_SET_AS_DEFAULT --set-string toolkit.env[2].value=true --timeout 30m --wait
+     shell: helm upgrade --install gpu-operator --version {{ gpu_operator_version }} --values {{ ansible_facts['user_dir'] }}/values.yaml --create-namespace --namespace nvidia-gpu-operator '{{ gpu_operator_helm_chart }}' --set toolkit.env[0].name=CONTAINERD_RUNTIME_CLASS --set toolkit.env[0].value=nvidia --set toolkit.env[1].name=CONTAINERD_SET_AS_DEFAULT --set-string toolkit.env[1].value=false --set toolkit.env[2].name=NVIDIA_RUNTIME_SET_AS_DEFAULT --set-string toolkit.env[2].value=true --timeout 30m --wait --set driver.version={{ gpu_driver_version }}
      retries: 5
      delay: 5
      register: install_gpu_operator_docker_cri_dockerd
