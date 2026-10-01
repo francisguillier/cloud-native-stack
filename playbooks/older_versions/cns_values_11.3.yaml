@@ -78,8 +78,6 @@ k8s_gpg_key: "https://pkgs.k8s.io/core:/stable:/v1.28/rpm/repodata/repomd.xml.ke
 k8s_apt_ring: "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
 k8s_registry: "registry.k8s.io"
 
-# Install NVIDIA NIM Operator 
-enable_nim_operator: no
 
 # Local Path Provisioner and NFS Provisoner as Storage option
 storage: no

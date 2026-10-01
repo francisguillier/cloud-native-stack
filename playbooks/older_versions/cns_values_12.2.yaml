@@ -21,7 +21,6 @@ flannel_version: "0.25.5"
 helm_version: "3.15.3"
 gpu_operator_version: "24.6.2"
 network_operator_version: "24.4.1"
-nim_operator_version: "1.0.0"
 local_path_provisioner: "0.0.26"
 nfs_provisioner: "4.0.18"
 metallb_version: "0.14.5"
@@ -84,8 +83,6 @@ k8s_gpg_key: "https://pkgs.k8s.io/core:/stable:/v1.29/rpm/repodata/repomd.xml.ke
 k8s_apt_ring: "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
 k8s_registry: "registry.k8s.io"
 
-# Install NVIDIA NIM Operator
-enable_nim_operator: no
 
 
 # Local Path Provisioner and NFS Provisoner as Storage option

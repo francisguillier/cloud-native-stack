@@ -312,7 +312,7 @@
        for process_name in nvidia-device-plugin nvidia-mig-manager gpu-feature-discovery dcgm-exporter fluent-bit prometheus prometheus-config-reloader; do
          pkill -9 -x "${process_name}" || true
        done
-       pkill -9 -f '/workspace/app|k8s-nim-operator|elastic-operator|istio|knative' || true
+       pkill -9 -f '/workspace/app|elastic-operator|istio|knative' || true
      become: true
      ignore_errors: yes
      failed_when: false
@@ -390,7 +390,7 @@
        for process_name in nvidia-device-plugin nvidia-mig-manager gpu-feature-discovery dcgm-exporter fluent-bit prometheus prometheus-config-reloader; do
          pkill -9 -x "${process_name}" || true
        done
-       pkill -9 -f '/workspace/app|k8s-nim-operator|elastic-operator|istio|knative' || true
+       pkill -9 -f '/workspace/app|elastic-operator|istio|knative' || true
      become: true
      ignore_errors: yes
      failed_when: false

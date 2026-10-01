@@ -9,8 +9,6 @@ Edit the selected `playbooks/cns_values_<version>.yaml` file. Use only keys that
 | Storage | `storage: yes` |
 | Monitoring / Grafana / Kibana / Prometheus | `monitoring: yes` |
 | Load balancer / MetalLB | `loadbalancer: yes` plus `loadbalancer_ips` when present |
-| NIM Operator | `enable_nim_operator: yes` |
-| Nsight Operator | `enable_nsight_operator: yes` |
 | KAI Scheduler / Kubernetes AI Scheduler | `enable_kai_scheduler: yes` |
 | Ingress Controller | `ingress_controller: yes` when the key exists |
 | Knative Serving | `knative_serving: yes` when the key exists |
@@ -40,7 +38,7 @@ Ask for these before editing when they are required:
 The values keys can differ across CNS versions. Before editing:
 
 ```bash
-grep -nE '^(storage|monitoring|loadbalancer|loadbalancer_ips|loadbalancer_ip|enable_nim_operator|enable_nsight_operator|enable_kai_scheduler|ingress_controller|knative_serving|microk8s|enable_network_operator|enable_rdma|enable_gds|use_open_kernel_module):' playbooks/cns_values_<version>.yaml
+grep -nE '^(storage|monitoring|loadbalancer|loadbalancer_ips|loadbalancer_ip|enable_kai_scheduler|ingress_controller|knative_serving|microk8s|enable_network_operator|enable_rdma|enable_gds|use_open_kernel_module):' playbooks/cns_values_<version>.yaml
 ```
 
 If a requested key is absent, do not invent it. Explain that the selected CNS version does not expose that option in its values file.

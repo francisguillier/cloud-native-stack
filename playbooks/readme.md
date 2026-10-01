@@ -122,8 +122,6 @@ flannel_version: "0.25.6"
 helm_version: "4.0.4"
 gpu_operator_version: "25.10.1"
 network_operator_version: "25.7.0"
-nim_operator_version: "3.0.2"
-nsight_operator_version: "1.1.2"
 kai_scheduler_version: "0.10.2"
 local_path_provisioner: "0.0.31"
 nfs_provisioner: "4.0.18"
@@ -191,11 +189,7 @@ k8s_registry: "registry.k8s.io"
 # Enable NVIDIA Kubernetes AI Scheduler
 enable_kai_scheduler: no
 
-# Enable NVIDIA NSight Operator
-enable_nsight_operator: no
 
-# Install NVIDIA NIM Operator
-enable_nim_operator: no
 
 
 # Local Path Provisioner and NFS Provisoner as Storage option
@@ -311,34 +305,6 @@ cns_version: 16.1
 
 enable_cdi: yes
 ```
-
-## Enable NIM Operator
-
-If you wnt to enable NIM Operator on Cloud Native Stack, you can enable the configuration in `cns_values_xx.yaml` and trigger the installation
-
-Example:
-```
-$ nano cns_values_16.1.yaml
-
-cns_version: 16.1
-
-enable_nim_operator: yes
-```
-For more information, Refer [NIM Operator](https://docs.nvidia.com/nim-operator/latest/index.html)
-
-## Enable Nsight Operator
-
-If you wnt to enable Nsight Operator on Cloud Native Stack, you can enable the configuration in `cns_values_xx.yaml` and trigger the installation
-
-Example:
-```
-$ nano cns_values_16.1.yaml
-
-cns_version: 16.1
-
-enable_nsight_operator: yes
-```
-For more information, Refer [Nsight Operator](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/devtools/helm-charts/nsight-operator)
 
 ## Enable Kubernetes AI Scheduler
 

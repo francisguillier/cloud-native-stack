@@ -266,12 +266,3 @@
   - name: Installing the GPU Operator n NVIDIA Cloud Native Stack
     when: "release != 'tegra' and confidential_computing == false and enable_gpu_operator == true and cns_docker == false and cns_nvidia_driver == false and use_open_kernel_module == false and enable_mig == false and enable_rdma == false and enable_vgpu == false and enable_gds == false and enable_secure_boot == false and ngc_registry_password != ''"
     shell: "microk8s.helm install --version {{ gpu_operator_version }} gpu-operator -n nvidia-gpu-operator --create-namespace nvidia/gpu-operator --set toolkit.env[0].name=CONTAINERD_CONFIG  --set toolkit.env[0].value=/var/snap/microk8s/current/args/containerd-template.toml  --set toolkit.env[1].name=CONTAINERD_SOCKET  --set toolkit.env[1].value=/var/snap/microk8s/common/run/containerd.sock --set toolkit.env[2].name=CONTAINERD_RUNTIME_CLASS --set toolkit.env[2].value=nvidia  --set toolkit.env[3].name=CONTAINERD_SET_AS_DEFAULT  --set-string toolkit.env[3].value=true --set driver.repository='{{ gpu_operator_driver_registry }}',driver.version='{{ gpu_driver_version }}' --set driver.imagePullSecrets[0]=ngc-secret"
-
-  - name: Install NIM Operator
-    shell: "{{ item }}"
-    when: "enable_nim_operator == true"
-    with_items:
-      - microk8s.kubectl create namespace nim-operator
-      - microk8s.kubectl label --overwrite ns nim-operator pod-security.kubernetes.io/warn=privileged pod-security.kubernetes.io/enforce=privileged
-      - microk8s.helm repo update
-      - microk8s.helm install --version {{ nim_operator_version }} nim-operator nvidia/k8s-nim-operator -n nim-operator

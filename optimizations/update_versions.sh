@@ -111,7 +111,6 @@ update_standard_repos() {
     repos[elasticsearch]="elastic/elasticsearch"
     repos[gpu_operator]="NVIDIA/gpu-operator"
     repos[network_operator]="Mellanox/network-operator"
-    repos[k8s_nim_operator]="NVIDIA/k8s-nim-operator"
     repos[k8s_dra_driver_gpu]="NVIDIA/k8s-dra-driver-gpu"
     repos[dynamo]="ai-dynamo/dynamo"
     repos[kai_scheduler]="NVIDIA/KAI-Scheduler"
@@ -122,7 +121,6 @@ update_standard_repos() {
     yaml_keys[nvidia_container_toolkit]="nvidia_container_toolkit_version"
     yaml_keys[gpu_operator]="gpu_operator_version"
     yaml_keys[network_operator]="network_operator_version"
-    yaml_keys[k8s_nim_operator]="nim_operator_version"
     yaml_keys[k8s_dra_driver_gpu]="dra_driver_version"
     yaml_keys[dynamo]="dynamo_release_version"
     yaml_keys[kai_scheduler]="kai_scheduler_version"
@@ -224,16 +222,6 @@ update_special_components() {
     if [[ -n "$version" ]]; then
         update_yaml_field "$TEMP_FILE" "ingress_controller_version" "$version"
         log_info "✓ ingress_controller_version: $version"
-    fi
-
-    # NVIDIA Nsight Operator (scraped from docs release notes — no GitHub releases page)
-    version=$(curl -sf "https://docs.nvidia.com/nsight-operator/ReleaseNotes/index.html" \
-        | grep -oE 'Current Release \([0-9]+\.[0-9]+\.[0-9]+\)' \
-        | head -1 \
-        | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' || true)
-    if [[ -n "$version" ]]; then
-        update_yaml_field "$TEMP_FILE" "nsight_operator_version" "$version"
-        log_info "✓ nsight_operator_version: $version"
     fi
 
     # GPU Driver Version — pinned by the matching gpu-operator release, not auto-released.

@@ -49,8 +49,6 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 | CNI (Calico)              | 3.32.0  | 3.32.0  | 3.32.0  | 3.32.0  |
 | NVIDIA GPU Operator       | 26.3.2  | 26.3.2  | 26.3.2  | 26.3.1  |
 | NVIDIA Network Operator   | N/A | 26.4.0 | 26.4.0 | 26.1.0 |
-| NVIDIA NIM Operator       | 3.1.1   | 3.1.1   | 3.1.1   | 3.1.0   |
-| NVIDIA Nsight Operator    | 26.2.2  | 26.2.2  | 26.2.2  | 26.2.1  |
 | NVIDIA KAI Scheduler      | 0.14.2  | 0.14.2  | 0.14.2  | 0.14.2  |
 | NVIDIA Data Center Driver | 580.126.20 | 580.126.20 | 580.126.20 | 580.126.20 |
 | Helm                      | 4.2.2   | 4.2.2   | 4.2.2   | 4.1.4   |
@@ -60,16 +58,14 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 
 > Note: Previous upstream Cloud Native Stack release information can be found [here](https://github.com/NVIDIA/cloud-native-stack/tree/25.7.2?tab=readme-ov-file#nvidia-cloud-native-stack-component-matrix)
 
-`main` is the default branch of this repository. Use the `26.6.0` branch for the configuration documented here.
+`main` is the default branch of this repository. Use the `26.10.0` branch for the configuration documented here.
 
 ## Software
 
 - Kubernetes
   - [GPU Operator](https://github.com/NVIDIA/gpu-operator)
   - [Network Operator](https://github.com/Mellanox/network-operator)  
-  - [NVIDIA NIM Operator](https://docs.nvidia.com/nim-operator/latest/index.html)
   - [NVIDIA KAI Scheduler](https://github.com/NVIDIA/KAI-Scheduler/tree/main)
-  - [NVIDIA Nsight Operator](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/devtools/helm-charts/nsight-operator)
   - [FeatureGates](./playbooks/readme.md#enable-feature-gates-to-cloud-native-stack)
 - [MicroK8s on CNS](./playbooks/readme.md#enable-microk8s)
 - [Storage on CNS](./playbooks/readme.md#storage-on-cns)
@@ -107,7 +103,7 @@ Please make sure to meet the following prerequisites to Install the Cloud Native
 Run the below commands to clone the NVIDIA Cloud Native Stack.
 
 ```
-git clone -b 26.6.0 https://github.com/francisguillier/cloud-native-stack.git
+git clone -b 26.10.0 https://github.com/francisguillier/cloud-native-stack.git
 cd cloud-native-stack/playbooks
 ```
 

@@ -94,7 +94,7 @@ export GITHUB_TOKEN="ghp_your_token_here"
 - MetalLB
 - Grafana Operator, Elasticsearch
 - GPU Operator, Network Operator
-- NIM Operator, DRA Driver
+- DRA Driver
 - Dynamo, KAI Scheduler
 
 ### Version-Locked Components
