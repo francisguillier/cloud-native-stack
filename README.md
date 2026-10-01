@@ -40,12 +40,12 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 
 | CNS Version               | 19.0    | 18.0    | 17.1    | 16.2    |
 | :-----:                   | :-----: | :-----: | :-----: | :-----: |
+| Kubernetes                | 1.36.2  | 1.35.6  | 1.34.9  | 1.33.10 |
 | Platforms                 | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> |
 | Supported OS              | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS (confidential computing only)</li></ul> | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS (confidential computing only)</li></ul> | <ul><li>Ubuntu 24.04 LTS</li></ul> | <ul><li>Ubuntu 24.04 LTS</li></ul> |
 | Containerd                | 2.3.1   | 2.3.1   | 2.3.1   | 2.3.0   |
 | NVIDIA Container Toolkit  | 1.19.1  | 1.19.1  | 1.19.1  | 1.19.0  |
 | CRI-O                     | 1.36.1  | 1.35.4  | 1.34.9  | 1.33.12 |
-| Kubernetes                | 1.36.2  | 1.35.6  | 1.34.9  | 1.33.10 |
 | CNI (Calico)              | 3.32.0  | 3.32.0  | 3.32.0  | 3.32.0  |
 | NVIDIA GPU Operator       | 26.3.2  | 26.3.2  | 26.3.2  | 26.3.1  |
 | NVIDIA Network Operator   | N/A | 26.4.0 | 26.4.0 | 26.1.0 |
