@@ -38,19 +38,19 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 
 #### Cloud Native Stack Batch 26.6.0 (Release Date: 1 July 2026)
 
-| CNS Version               | 19.0    | 18.0    | 17.1    | 16.2    |
-| :-----:                   | :-----: | :-----: | :-----: | :-----: |
-| Kubernetes                | 1.36.2  | 1.35.6  | 1.34.9  | 1.33.10 |
-| Platforms                 | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> |
-| Supported OS              | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS (confidential computing only)</li></ul> | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS (confidential computing only)</li></ul> | <ul><li>Ubuntu 24.04 LTS</li></ul> | <ul><li>Ubuntu 24.04 LTS</li></ul> |
-| Containerd                | 2.4.1   | 2.4.1   | 2.4.1   | 2.4.1   |
-| NVIDIA Container Toolkit  | 1.19.1  | 1.19.1  | 1.19.1  | 1.19.0  |
-| CRI-O                     | 1.36.1  | 1.35.4  | 1.34.9  | 1.33.12 |
-| CNI (Calico)              | 3.32.0  | 3.32.0  | 3.32.0  | 3.32.0  |
-| NVIDIA GPU Operator       | 26.7.1  | 26.7.1  | 26.7.1  | 26.7.1  |
-| NVIDIA Network Operator   | 26.7.0  | 26.7.0  | 26.7.0  | 26.7.0  |
-| NVIDIA Data Center Driver | 580.178.04 | 580.178.04 | 580.178.04 | 580.178.04 |
-| Helm                      | 4.2.2   | 4.2.2   | 4.2.2   | 4.1.4   |
+| CNS Version               | 19.0    | 18.0    | 17.1    |
+| :-----:                   | :-----: | :-----: | :-----: |
+| Kubernetes                | 1.36.2  | 1.35.6  | 1.34.9  |
+| Platforms                 | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> |
+| Supported OS              | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS (confidential computing only)</li></ul> | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS (confidential computing only)</li></ul> | <ul><li>Ubuntu 24.04 LTS</li></ul> |
+| Containerd                | 2.4.1   | 2.4.1   | 2.4.1   |
+| NVIDIA Container Toolkit  | 1.19.1  | 1.19.1  | 1.19.1  |
+| CRI-O                     | 1.36.1  | 1.35.4  | 1.34.9  |
+| CNI (Calico)              | 3.32.0  | 3.32.0  | 3.32.0  |
+| NVIDIA GPU Operator       | 26.7.1  | 26.7.1  | 26.7.1  |
+| NVIDIA Network Operator   | 26.7.0  | 26.7.0  | 26.7.0  |
+| NVIDIA Data Center Driver | 580.178.04 | 580.178.04 | 580.178.04 |
+| Helm                      | 4.2.2   | 4.2.2   | 4.2.2   |
 
 NVIDIA Network Operator defaults to `26.7.0` in all playbook values files. To select another release, set `network_operator_version` in the values file for your CNS version. See the [Network Operator 26.7.0 release notes](https://docs.nvidia.com/networking/display/kubernetes2670/release-notes.html).
 
@@ -60,7 +60,7 @@ containerd defaults to `2.4.1` in all playbook values files. To select another r
 
 GPU Operator defaults to `26.7.1` in all playbook values files. To select another release, set `gpu_operator_version` in the values file for your CNS version. See the [GPU Operator 26.7 release notes](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/26.7/release-notes.html) and [platform support matrix](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/26.7/platform-support.html) for component versions and supported configurations.
 
-> NOTE: CNS 18.0 and 19.0 target Ubuntu 24.04 and Ubuntu 26.04. CNS 16.2 and 17.1 target Ubuntu 24.04.
+> NOTE: CNS 18.0 and 19.0 target Ubuntu 24.04 and Ubuntu 26.04. CNS 17.1 targets Ubuntu 24.04.
 > NOTE: NVIDIA Network Operator 26.7.0 supports Kubernetes 1.32 through 1.36, covering the CNS versions in this matrix. See the [Network Operator platform support matrix](https://docs.nvidia.com/networking/display/kubernetes2670/platform-support.html) for hardware and operating system requirements.
 
 > Note: Previous upstream Cloud Native Stack release information can be found [here](https://github.com/NVIDIA/cloud-native-stack/tree/25.7.2?tab=readme-ov-file#nvidia-cloud-native-stack-component-matrix)
@@ -79,13 +79,13 @@ GPU Operator defaults to `26.7.1` in all playbook values files. To select anothe
 - [Load balancer on CNS](./playbooks/readme.md#load-balancer-on-cns)
 - [Ingress Controller and Knative Serving configuration](./playbooks/cns_values_19.0.yaml)
 
-| CNS Version               | 19.0    | 18.0    | 17.1    | 16.2    |
-| :-----:                   | :-----: | :-----: | :-----: | :-----: |
-| MicroK8s                  | 1.36    | 1.35    | 1.34    | 1.33    |
-| Ingress Controller        | 4.15.1  | 4.15.1  | 4.15.1  | 4.15.1  |
-| LoadBalancer              | MetalLB: 0.16.1 | MetalLB: 0.16.1 | MetalLB: 0.16.1 | MetalLB: 0.15.3 |
-| Storage                   | NFS: 4.0.18 <br /> Local Path: 0.0.36 | NFS: 4.0.18 <br /> Local Path: 0.0.36 | NFS: 4.0.18 <br /> Local Path: 0.0.36 | NFS: 4.0.18 <br /> Local Path: 0.0.35 |
-| Monitoring                | Prometheus: 86.2.3 <br /> Prometheus Adapter: 5.3.0 <br /> Grafana Operator: 5.24.0 <br /> Elastic: 9.4.2 | Prometheus: 86.2.3 <br /> Prometheus Adapter: 5.3.0 <br /> Grafana Operator: 5.24.0 <br /> Elastic: 9.4.2 | Prometheus: 86.2.3 <br /> Prometheus Adapter: 5.3.0 <br /> Grafana Operator: 5.24.0 <br /> Elastic: 9.4.2 | Prometheus: 84.5.0 <br /> Prometheus Adapter: 5.3.0 <br /> Grafana Operator: 5.22.2 <br /> Elastic: 9.4.0 |
+| CNS Version               | 19.0    | 18.0    | 17.1    |
+| :-----:                   | :-----: | :-----: | :-----: |
+| MicroK8s                  | 1.36    | 1.35    | 1.34    |
+| Ingress Controller        | 4.15.1  | 4.15.1  | 4.15.1  |
+| LoadBalancer              | MetalLB: 0.16.1 | MetalLB: 0.16.1 | MetalLB: 0.16.1 |
+| Storage                   | NFS: 4.0.18 <br /> Local Path: 0.0.36 | NFS: 4.0.18 <br /> Local Path: 0.0.36 | NFS: 4.0.18 <br /> Local Path: 0.0.36 |
+| Monitoring                | Prometheus: 86.2.3 <br /> Prometheus Adapter: 5.3.0 <br /> Grafana Operator: 5.24.0 <br /> Elastic: 9.4.2 | Prometheus: 86.2.3 <br /> Prometheus Adapter: 5.3.0 <br /> Grafana Operator: 5.24.0 <br /> Elastic: 9.4.2 | Prometheus: 86.2.3 <br /> Prometheus Adapter: 5.3.0 <br /> Grafana Operator: 5.24.0 <br /> Elastic: 9.4.2 |
 
 # Getting Started
 

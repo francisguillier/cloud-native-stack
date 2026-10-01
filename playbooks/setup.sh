@@ -91,7 +91,11 @@ if [[ -r cns_values.yaml ]]; then
 fi
 
 version=$(cat cns_version.yaml | awk -F':' '{print $2}' | head -n1 | tr -d ' ' | tr -d '\n\r')
-cp cns_values_$version.yaml cns_values.yaml
+if [[ ! -f "cns_values_${version}.yaml" ]]; then
+    echo "Unsupported CNS version: ${version}. No matching values file exists." >&2
+    exit 1
+fi
+cp "cns_values_${version}.yaml" cns_values.yaml
 selected_confidential_computing=$(awk -F': *' '/^confidential_computing:/ {print $2; exit}' cns_values.yaml | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]')
 if [[ "$1" == "uninstall" && ( "$existing_confidential_computing" == "yes" || "$existing_confidential_computing" == "true" ) ]]; then
 	sed -i 's/^confidential_computing:.*/confidential_computing: yes/' cns_values.yaml

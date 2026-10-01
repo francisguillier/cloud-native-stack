@@ -4,7 +4,6 @@ The following NVIDIA Cloud Native Stack Install Guides are available.
 ### Ubuntu Systems
 - [Ubuntu 24.04 Server x86 & arm64 v16.0](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_x86-arm64_v16.0.md)
 - [Ubuntu 24.04 Server x86 & arm64 v16.1](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_x86-arm64_v16.1.md)
-- [Ubuntu 24.04 Server x86 & arm64 v16.2](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_x86-arm64_v16.2.md)
 - [Ubuntu 24.04 Server x86 & arm64 v17.0](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_x86-arm64_v17.0.md)
 - [Ubuntu 24.04 Server x86 & arm64 v17.1](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_x86-arm64_v17.1.md)
 - [Ubuntu 24.04 Server x86 & arm64 v18.0](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_x86-arm64_v18.0.md)
@@ -18,7 +17,6 @@ The following NVIDIA Cloud Native Stack Install Guides are available.
 ### Ubuntu Server for Developers
 - [Ubuntu 24.04 Server Developer x86 & arm64 v16.0](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_Developer-x86-arm64_v16.0.md)
 - [Ubuntu 24.04 Server Developer x86 & arm64 v16.1](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_Developer-x86-arm64_v16.1.md)
-- [Ubuntu 24.04 Server Developer x86 & arm64 v16.2](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_Developer-x86-arm64_v16.2.md)
 - [Ubuntu 24.04 Server Developer x86 & arm64 v17.0](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_Developer-x86-arm64_v17.0.md)
 - [Ubuntu 24.04 Server Developer x86 & arm64 v17.1](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_Developer-x86-arm64_v17.1.md)
 - [Ubuntu 24.04 Server Developer x86 & arm64 v18.0](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/install-guides/Ubuntu-24-04_Server_Developer-x86-arm64_v18.0.md)

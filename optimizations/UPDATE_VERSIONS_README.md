@@ -74,7 +74,7 @@ curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/rate_limit
 ```bash
 # Set token and run
 export GITHUB_TOKEN="ghp_your_token_here"
-./update_versions.sh cns_values_16.0.yaml cns_values_16.2.yaml
+./update_versions.sh cns_values_16.0.yaml cns_values_updated.yaml
 ```
 
 ### Without Token (Limited)
@@ -114,7 +114,7 @@ export GITHUB_TOKEN="ghp_your_token_here"
 ```
 [INFO] Starting version update process
 [INFO] Input:  cns_values_16.0.yaml
-[INFO] Output: cns_values_16.2.yaml
+[INFO] Output: cns_values_updated.yaml
 ✓ Using GitHub token authentication
 [INFO] Updating standard repository versions...
 [INFO] ✓ containerd_version: 1.7.24
@@ -123,7 +123,7 @@ export GITHUB_TOKEN="ghp_your_token_here"
 [INFO] ✓ gpu_operator_version: 24.12.0
 ...
 [INFO] ✓ Version update complete!
-[INFO] Results saved to: cns_values_16.2.yaml
+[INFO] Results saved to: cns_values_updated.yaml
 ```
 
 ## Rate Limits

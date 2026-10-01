@@ -11,7 +11,7 @@ set -euo pipefail
 # ============================================================================
 
 readonly INPUT_YAML="${1:-cns_values_16.0.yaml}"
-readonly OUTPUT_YAML="${2:-cns_values_16.2.yaml}"
+readonly OUTPUT_YAML="${2:-cns_values_updated.yaml}"
 readonly GITHUB_TOKEN="${GITHUB_TOKEN:-}"
 readonly TEMP_FILE=$(mktemp)
 

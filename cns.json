@@ -111,33 +111,6 @@
 					}
 				]
 			},
-			"16.2": {
-				"release_date": "1 July 2026",
-				"platforms": [
-					{
-						"name": "NVIDIA Certified Server",
-						"CPU architecture": "x86, Arm64",
-						"os": "Ubuntu 24.04 LTS",
-						"components": {
-							"containerd": "2.4.1",
-							"cri-o": "1.33.12",
-							"k8s version": "1.33.10",
-							"Calico": "v3.32.0",
-							"helm version": "4.1.4",
-							"NVIDIA GPU Operator": "26.7.1",
-							"NVIDIA Network Operator": "26.7.0",
-							"NVIDIA DataCenter Driver": "580.178.04",
-							"Local Path Provisioner": "0.0.35",
-							"NFS Provisioner": "4.0.18",
-							"Metallb": "0.15.3",
-							"Prometheus Stack": "84.5.0",
-							"Prometheus Adapter": "5.3.0",
-							"Grafana Operator": "5.22.2",
-							"Elastic Stack": "9.4.0"
-						}
-					}
-				]
-			},
 			"17.0": {
 				"release_date": "2 January 2026",
 				"platforms": [
