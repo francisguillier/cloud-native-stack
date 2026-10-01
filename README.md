@@ -5,7 +5,7 @@
 
 NVIDIA Cloud Native Stack (CNS) is a collection of software to run cloud native workloads on NVIDIA GPUs. NVIDIA Cloud Native Stack is based on Ubuntu/RHEL, Kubernetes, Helm and the NVIDIA GPU and Network Operator.
 
-Interested in deploying NVIDIA Cloud Native Stack? This repository has [install guides](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/install-guides) for manual installations and [ansible playbooks](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/playbooks) for automated installations.
+Interested in deploying NVIDIA Cloud Native Stack? This repository has [install guides](./install-guides/readme.md) for manual installations and [ansible playbooks](./playbooks/readme.md) for automated installations.
 
 Interested in a pre-provisioned NVIDIA Cloud Native Stack environment? [NVIDIA LaunchPad](https://www.nvidia.com/en-us/data-center/launchpad/) provides pre-provisioned environments so that you can quickly get started.
 
@@ -15,7 +15,7 @@ Interested in a pre-provisioned NVIDIA Cloud Native Stack environment? [NVIDIA L
 
 - CNS also comes as installation guides and playbook that can be used to instantiate a quick K8s environment with NVIDIA operators. The CNS installation guides and playbook are intended only for test and PoC environments.
 
-  Note: The K8s layer that CNS install guide or playbook deploys is basic (no HA for instance) and as such cannot be used for production. However all NVIDIA componants in CNS are fully operable in production environment. 
+  Note: The K8s layer that CNS install guide or playbook deploys is basic (no HA for instance) and as such cannot be used for production. However all NVIDIA components in CNS are fully operable in production environment.
 
 ## Life Cycle
 
@@ -30,9 +30,9 @@ When NVIDIA Cloud Native Stack batch is released, the previous batch enters main
 | [25.12.1](https://github.com/NVIDIA/cloud-native-stack/releases/tag/v25.12.1)                   | Maintenance |
 | [25.12.0](https://github.com/NVIDIA/cloud-native-stack/releases/tag/v25.12.0)                   | EOL |
 
-`NOTE:` CNS Version 18.0 and above is Now supports Ubuntu 24.04 and Ubuntu 26.04
+`NOTE:` CNS 18.0 and above support Ubuntu 24.04 and Ubuntu 26.04. See the component matrix for deployment restrictions.
 
-For more information, Refer [Cloud Native Stack Releases](https://github.com/NVIDIA/cloud-native-stack/releases)
+For upstream release information, see [Cloud Native Stack Releases](https://github.com/NVIDIA/cloud-native-stack/releases)
 
 ## Component Matrix
 
@@ -58,11 +58,11 @@ For more information, Refer [Cloud Native Stack Releases](https://github.com/NVI
 > NOTE: CNS 18.0 and 19.0 target Ubuntu 24.04 and Ubuntu 26.04. CNS 16.2 and 17.1 target Ubuntu 24.04.
 > NOTE: NVIDIA Network Operator is N/A for CNS 19.0 because CNS 19.0 uses Kubernetes 1.36.2, while Network Operator 26.4.0 supports Kubernetes 1.31 through 1.35. NVIDIA GPU Operator 26.3.2 does not currently support RDMA with Network Operator 26.4.0. NVIDIA Network Operator 26.1.0 supports RDMA with NVIDIA GPU Operator 26.3.2; RDMA support with Network Operator 26.4.0 requires a future NVIDIA GPU Operator version.
 
-> Note: To Previous Cloud Native Stack release information can be found [here](https://github.com/NVIDIA/cloud-native-stack/tree/25.7.2?tab=readme-ov-file#nvidia-cloud-native-stack-component-matrix)
+> Note: Previous upstream Cloud Native Stack release information can be found [here](https://github.com/NVIDIA/cloud-native-stack/tree/25.7.2?tab=readme-ov-file#nvidia-cloud-native-stack-component-matrix)
 
-`NOTE:` Cloud Native Stack versions are available with the master branch but it's recommend to use the specific branch.
+`main` is the default branch of this repository. Use the `26.6.0` branch for the configuration documented here.
 
-# Software
+## Software
 
 - Kubernetes
   - [GPU Operator](https://github.com/NVIDIA/gpu-operator)
@@ -70,22 +70,16 @@ For more information, Refer [Cloud Native Stack Releases](https://github.com/NVI
   - [NVIDIA NIM Operator](https://docs.nvidia.com/nim-operator/latest/index.html)
   - [NVIDIA KAI Scheduler](https://github.com/NVIDIA/KAI-Scheduler/tree/main)
   - [NVIDIA Nsight Operator](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/devtools/helm-charts/nsight-operator)
-  - [FeatureGates](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/playbooks#enable-feature-gates-to-cloud-native-stack)
-- [MicroK8s on CNS](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/playbooks#enable-microk8s)
-- [Installation on CSP's](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/playbooks#installation-on-csps)
-- [Storage on CNS](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/playbooks#storage-on-cns)
-- [Monitoring on CNS](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/playbooks#monitoring-on-cns)
-- [LoadBalancer on CNS](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/playbooks#load-balancer-on-cns)
-- [Kserve](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/playbooks#enable-kserve-on-cns)
-- [LeaderWorkerSet(lws)](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/playbooks#enable-leaderworkerset)
-- [Volcano](https://volcano.sh/en/docs/)
+  - [FeatureGates](./playbooks/readme.md#enable-feature-gates-to-cloud-native-stack)
+- [MicroK8s on CNS](./playbooks/readme.md#enable-microk8s)
+- [Storage on CNS](./playbooks/readme.md#storage-on-cns)
+- [Monitoring on CNS](./playbooks/readme.md#monitoring-on-cns)
+- [Load balancer on CNS](./playbooks/readme.md#load-balancer-on-cns)
+- [Ingress Controller and Knative Serving configuration](./playbooks/cns_values_19.0.yaml)
 
 | CNS Version               | 19.0    | 18.0    | 17.1    | 16.2    |
 | :-----:                   | :-----: | :-----: | :-----: | :-----: |
 | MicroK8s                  | 1.36    | 1.35    | 1.34    | 1.33    |
-| KServe                    | <br /> **0.19** <br /> <br /> <ul><li>Istio: 1.28.0</li><li>Knative: 1.20.0</li><li>CertManager: 1.19.1</li></ul> | <br /> **0.19** <br /> <br /> <ul><li>Istio: 1.28.0</li><li>Knative: 1.20.0</li><li>CertManager: 1.19.1</li></ul> | <br /> **0.19** <br /> <br /> <ul><li>Istio: 1.28.0</li><li>Knative: 1.20.0</li><li>CertManager: 1.19.1</li></ul> | <br /> **0.18** <br /> <br /> <ul><li>Istio: 1.28.0</li><li>Knative: 1.20.0</li><li>CertManager: 1.19.1</li></ul> |
-| LeaderWorkerSet           | 0.8.0   | 0.8.0   | 0.8.0   | 0.8.0   |
-| Volcano Scheduler         | 1.15.0  | 1.15.0  | 1.15.0  | 1.14.1  |
 | Ingress Controller        | 4.15.1  | 4.15.1  | 4.15.1  | 4.15.1  |
 | LoadBalancer              | MetalLB: 0.16.1 | MetalLB: 0.16.1 | MetalLB: 0.16.1 | MetalLB: 0.15.3 |
 | Storage                   | NFS: 4.0.18 <br /> Local Path: 0.0.36 | NFS: 4.0.18 <br /> Local Path: 0.0.36 | NFS: 4.0.18 <br /> Local Path: 0.0.36 | NFS: 4.0.18 <br /> Local Path: 0.0.35 |
@@ -113,7 +107,7 @@ Please make sure to meet the following prerequisites to Install the Cloud Native
 Run the below commands to clone the NVIDIA Cloud Native Stack.
 
 ```
-git clone -b 26.6.0 https://github.com/NVIDIA/cloud-native-stack.git
+git clone -b 26.6.0 https://github.com/francisguillier/cloud-native-stack.git
 cd cloud-native-stack/playbooks
 ```
 
@@ -128,12 +122,14 @@ nano hosts
 <worker-IP> ansible_ssh_user=nvidia ansible_ssh_pass=nvidiapass ansible_sudo_pass=nvidiapass ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 ```
 
-Install the NVIDIA Cloud Native Stack stack by running the below command. "Skipping" in the ansible output refers to the Kubernetes cluster is up and running.
+Select the CNS version in `cns_version.yaml`, then customize its `cns_values_<version>.yaml` file. Enable the add-ons you need, such as storage, monitoring, MetalLB, the ingress controller, or Knative Serving, using the options available in that file.
+
+Install NVIDIA Cloud Native Stack with:
 
 ```
 bash setup.sh install
 ```
-For more Information about customize the values, please refer [Installation](https://github.com/NVIDIA/cloud-native-stack/tree/26.6.0/playbooks#installation)
+For details on selecting a version and customizing values, see [Installation](./playbooks/readme.md#installation)
 
 # Topologies
 
@@ -150,11 +146,11 @@ For more Information about customize the values, please refer [Installation](htt
 
 # Troubleshooting
 
-[Troubleshoot CNS installation issues](https://github.com/NVIDIA/cloud-native-stack/blob/26.6.0/troubleshooting/README.md)
+[Troubleshoot CNS installation issues](./troubleshooting/README.md)
 
 # Getting help or Providing feedback
 
-Please open an [issue](https://github.com/NVIDIA/cloud-native-stack/issues) on the GitHub project for any questions. Your feedback is appreciated.
+Please open an [issue](https://github.com/francisguillier/cloud-native-stack/issues) on the GitHub project for any questions. Your feedback is appreciated.
 
 # Useful Links
 - [NVIDIA LaunchPad](https://www.nvidia.com/en-us/data-center/launchpad/)

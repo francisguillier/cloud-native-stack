@@ -355,114 +355,6 @@
          register: delete_dcgm_pod
          until: delete_dcgm_pod is succeeded
 
-   - name: check LeaderWorkerSet is installed
-     shell: kubectl get pods -A | grep lws | awk '{print $2}' | head -n 1 | wc -l | tr -d '\n'
-     failed_when: false
-     ignore_errors: true
-     register: lw_set
-
-   - name: Install LeaderWorkerSet on NVIDIA Cloud Native Stack
-     ignore_errors: true
-     failed_when: false
-     shell: helm install lws https://github.com/kubernetes-sigs/lws/releases/download/v{{ lws_version }}/lws-chart-{{ lws_version }}.tgz --namespace lws-system  --create-namespace  --wait --timeout 300s
-     when: lws == true and lw_set.stdout != '1'
-     retries: 5
-     delay: 5
-     register: install_lws
-     until: install_lws is succeeded
-
-   - name: check Volcano Scheduler is installed
-     shell: kubectl get pods -A | grep volcano | awk '{print $2}' | head -n 1 | wc -l | tr -d '\n'
-     failed_when: false
-     ignore_errors: true
-     register: volcano_scheduler
-
-   - name: Install Volcano Scheduler
-     when: volcano == true and volcano_scheduler.stdout != '1'
-     shell: |
-       helm repo add volcano-sh https://volcano-sh.github.io/helm-charts
-       helm repo update
-       helm install volcano volcano-sh/volcano --version {{ volcano_version }} --namespace volcano-system --create-namespace --force
-     retries: 5
-     delay: 5
-     register: install_volcano_scheduler
-     until: install_volcano_scheduler is succeeded
-
-   - name: check Kserve is Installed
-     shell: kubectl get pods -A | grep kserve | awk '{print $2}' | head -n 1 | wc -l | tr -d '\n'
-     failed_when: false
-     ignore_errors: true
-     register: kserve_install  
-
-   - name: Install Kserve on Kubernetes
-     when: kserve == true and kserve_install.stdout != '1'
-     retries: 5
-     delay: 30
-     until: install_kserve is succeeded
-     shell: |
-       kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/${GATEWAY_API_VERSION}/standard-install.yaml
-       helm repo add istio https://istio-release.storage.googleapis.com/charts --force-update
-       helm install istio-base istio/base -n istio-system --wait --set defaultRevision=default --create-namespace --version ${ISTIO_VERSION}
-       helm install istiod istio/istiod -n istio-system --wait --version ${ISTIO_VERSION} --set proxy.autoInject=disabled --set-string pilot.podAnnotations."cluster-autoscaler\.kubernetes\.io/safe-to-evict"=true
-       helm install istio-ingressgateway istio/gateway -n istio-system --version ${ISTIO_VERSION} --set-string podAnnotations."cluster-autoscaler\.kubernetes\.io/safe-to-evict"=true
-       sleep 20
-       helm repo add jetstack https://charts.jetstack.io --force-update
-       helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace  --version ${CERT_MANAGER_VERSION}  --set crds.enabled=true
-       helm install knative-operator --namespace knative-serving --create-namespace --wait https://github.com/knative/operator/releases/download/knative-${KNATIVE_OPERATOR_VERSION}/knative-operator-${KNATIVE_OPERATOR_VERSION}.tgz
-       kubectl apply -f - <<EOF
-       apiVersion: operator.knative.dev/v1beta1
-       kind: KnativeServing
-       metadata:
-         name: knative-serving
-         namespace: knative-serving
-       spec:
-         version: "${KNATIVE_SERVING_VERSION}"
-         config:
-           domain:
-         # Patch the external domain as the default domain svc.cluster.local is not exposed on ingress (from knative 1.8)
-             example.com: ""
-       EOF
-       helm install kserve-crd oci://ghcr.io/kserve/charts/kserve-crd --version ${KSERVE_VERSION} --namespace kserve --create-namespace --wait
-       helm install kserve oci://ghcr.io/kserve/charts/kserve --version ${KSERVE_VERSION} --namespace kserve --create-namespace --wait --set-string kserve.controller.deploymentMode="Serverless"
-     register: install_kserve
-     failed_when: false
-     ignore_errors: true
-     environment:
-       ISTIO_VERSION: "1.28.0"
-       KNATIVE_OPERATOR_VERSION: "v1.20.0"
-       KNATIVE_SERVING_VERSION: "1.20.0"
-       KSERVE_VERSION: "v0.16.0"
-       CERT_MANAGER_VERSION: "v1.19.1"
-       GATEWAY_API_VERSION: "v1.4.0"
-
-   - name: Patch Knative Serving CRD
-     when: kserve == true
-     shell: |
-       sleep 15; kubectl patch configmap config-features -n knative-serving --type merge -p '{"data":{"kubernetes.podspec-nodeselector":"enabled"}}'
-       kubectl patch configmap config-features -n knative-serving --type merge -p '{"data":{"kubernetes.podspec-persistent-volume-claim":"enabled","kubernetes.podspec-persistent-volume-write":"enabled"}}'
-     retries: 5
-     delay: 5
-     ignore_errors: true
-     failed_when: false
-     register: patch_knative_serving_crd
-     until: patch_knative_serving_crd is succeeded
-
-   - name: Apply Nginx IngressClass Name for Kserve
-     when: kserve == true and kserve_install.stdout != '1' and ingress_controller == false
-     shell: |
-       kubectl apply -f - <<EOF
-       apiVersion: networking.k8s.io/v1
-       kind: IngressClass
-       metadata:
-         name: nginx
-       spec:
-         controller: istio.io/ingress-controller
-       EOF
-     retries: 5
-     delay: 5
-     register: apply_ingress_config
-     until: apply_ingress_config is succeeded
-
    - name: check ingress controller is installed
      shell: kubectl get pods -A | grep ingress-nginx | awk '{print $2}' | head -n 1 | wc -l | tr -d '\n'
      failed_when: false
@@ -470,7 +362,7 @@
      register: ingress_controller_install
 
    - name: Install Ingress Controller
-     when: ingress_controller == true and ingress_controller_install.stdout != '1' and kserve == false
+     when: ingress_controller == true and ingress_controller_install.stdout != '1'
      shell: |
        helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
        helm repo update

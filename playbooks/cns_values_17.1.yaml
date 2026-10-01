@@ -30,13 +30,10 @@ kai_scheduler_version: "0.14.2"
 local_path_provisioner: "0.0.36"
 nfs_provisioner: "4.0.18"
 metallb_version: "0.16.1"
-kserve_version: "0.19.0"
 prometheus_stack: "86.2.3"
 prometheus_adapter: "5.3.0"
 grafana_operator: "5.24.0"
 elastic_stack: "9.4.2"
-lws_version: "0.8.0"
-volcano_version: "1.15.0"
 ingress_controller_version: "4.15.1"
 
 # GPU Operator Values
@@ -103,8 +100,6 @@ enable_nsight_operator: no
 # Install NVIDIA NIM Operator
 enable_nim_operator: no
 
-# LeaderWorkerSet https://github.com/kubernetes-sigs/lws/tree/main
-lws: no
 
 # Local Path Provisioner and NFS Provisoner as Storage option
 storage: no
@@ -112,8 +107,6 @@ storage: no
 # Monitoring Stack Prometheus/Grafana with GPU Metrics and Elastic Logging stack
 monitoring: no 
 
-# Enable Kserve on Cloud Native Stack with Istio and Cert-Manager
-kserve: no
 
 # Install Ingress Controller
 ingress_controller: no
@@ -130,8 +123,6 @@ kubernetes_host_ip: ""
 knative_serving: no
 runai_inference_domain: ""
 
-# Enable Volcano Scheduler
-volcano: no
 
 ## Cloud Native Stack Validation
 cns_validation: no

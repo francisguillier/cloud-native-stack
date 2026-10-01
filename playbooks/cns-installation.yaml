@@ -13,7 +13,6 @@
         cns_validation: "{{ cns_validation }}"
         confidential_computing: "{{ confidential_computing }}"
         microk8s: "{{ microk8s }}"
-        kserve: "{{ kserve }}"
         storage: "{{ storage }}"
         monitoring: "{{ monitoring }}"
         loadbalancer: "{{ loadbalancer }}"
@@ -612,7 +611,7 @@
 - when: "microk8s == true"
   import_playbook: microk8s.yaml
 
-- when: "storage == true and install_k8s == true or monitoring == true and install_k8s == true or kserve == true and install_k8s == true or loadbalancer == true and install_k8s == true or lws == true and install_k8s == true or enable_kai_scheduler == true and install_k8s == true or volcano == true and install_k8s == true"
+- when: "storage == true and install_k8s == true or monitoring == true and install_k8s == true or loadbalancer == true and install_k8s == true or enable_kai_scheduler == true and install_k8s == true"
   import_playbook: add-ons.yaml
   
 - hosts: all

@@ -30,13 +30,10 @@ kai_scheduler_version: "0.10.2"
 local_path_provisioner: "0.0.31"
 nfs_provisioner: "4.0.18"
 metallb_version: "0.15.3"
-kserve_version: "0.16.0"
 prometheus_stack: "79.9.0"
 prometheus_adapter: "5.2.0"
 grafana_operator: "5.18.0"
 elastic_stack: "9.2.1"
-lws_version: "0.7.0"
-volcano_version: "1.13.0"
 
 # GPU Operator Values
 enable_gpu_operator: yes
@@ -102,8 +99,6 @@ enable_nsight_operator: no
 # Install NVIDIA NIM Operator
 enable_nim_operator: no
 
-# LeaderWorkerSet https://github.com/kubernetes-sigs/lws/tree/main
-lws: no
 
 # Local Path Provisioner and NFS Provisoner as Storage option
 storage: no
@@ -111,8 +106,6 @@ storage: no
 # Monitoring Stack Prometheus/Grafana with GPU Metrics and Elastic Logging stack
 monitoring: no
 
-# Enable Kserve on Cloud Native Stack with Istio and Cert-Manager
-kserve: no
 
 # Install MetalLB
 loadbalancer: no
@@ -120,8 +113,6 @@ loadbalancer: no
 loadbalancer_ip: ""
 kubernetes_host_ip: ""
 
-# Enable Volcano Scheduler
-volcano: no
 
 ## Cloud Native Stack Validation
 cns_validation: no

@@ -24,7 +24,6 @@ network_operator_version: "23.7.0"
 local_path_provisioner: "0.0.24"
 nfs_provisioner: "4.0.18"
 metallb_version: "0.14.5"
-kserve_version: "0.13"
 prometheus_stack: "61.3.0"
 elastic_stack: "8.14.1"
 
@@ -82,8 +81,6 @@ storage: no
 # Monitoring Stack Prometheus/Grafana with GPU Metrics and Elastic Logging stack
 monitoring: no
 
-# Enable Kserve on Cloud Native Stack with Istio and Cert-Manager
-kserve: no
 
 # Install MetalLB
 loadbalancer: no

@@ -26,12 +26,10 @@ nsight_operator_version: "1.1.1"
 local_path_provisioner: "0.0.31"
 nfs_provisioner: "4.0.18"
 metallb_version: "0.14.9"
-kserve_version: "0.15"
 prometheus_stack: "70.3.0"
 prometheus_adapter: "4.13.0"
 grafana_operator: "5.17.0"
 elastic_stack: "8.17.4"
-lws_version: "0.5.1"
 ingress_controller_version: "4.14.1"
 
 # GPU Operator Values
@@ -92,8 +90,6 @@ k8s_registry: "registry.k8s.io"
 # Enable NVIDIA Kubernetes AI Scheduler
 enable_kai_scheduler: no
 
-# Enable Volcano Scheduler
-volcano: no
 
 # Enable NVIDIA NSight Operator
 enable_nsight_operator: no
@@ -101,8 +97,6 @@ enable_nsight_operator: no
 # Install NVIDIA NIM Operator
 enable_nim_operator: no
 
-# LeaderWorkerSet https://github.com/kubernetes-sigs/lws/tree/main
-lws: no
 
 # Local Path Provisioner and NFS Provisoner as Storage option
 storage: no
@@ -110,8 +104,6 @@ storage: no
 # Monitoring Stack Prometheus/Grafana with GPU Metrics and Elastic Logging stack
 monitoring: no
 
-# Enable Kserve on Cloud Native Stack with Istio and Cert-Manager
-kserve: no
 
 # Install Ingress Controller
 ingress_controller: no

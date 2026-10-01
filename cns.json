@@ -23,13 +23,10 @@
 					"Local Path Provisioner": "0.0.36",
 					"NFS Provisioner": "4.0.18",
 					"Metallb": "0.16.1",
-					"Kserve": "0.19.0",
 					"Prometheus Stack": "86.2.3",
 					"Prometheus Adapter": "5.3.0",
 					"Grafana Operator": "5.24.0",
-					"Elastic Stack": "9.4.2",
-					"LeaderWorkerSet": "0.8.0",
-					"Volcano": "1.15.0"
+					"Elastic Stack": "9.4.2"
 				}
 			}
 		]
@@ -58,13 +55,10 @@
 							"Local Path Provisioner": "0.0.36",
 							"NFS Provisioner": "4.0.18",
 							"Metallb": "0.16.1",
-							"Kserve": "0.19.0",
 							"Prometheus Stack": "86.2.3",
 							"Prometheus Adapter": "5.3.0",
 							"Grafana Operator": "5.24.0",
-							"Elastic Stack": "9.4.2",
-							"LeaderWorkerSet": "0.8.0",
-							"Volcano": "1.15.0"
+							"Elastic Stack": "9.4.2"
 						}
 					}
 				]
@@ -91,13 +85,10 @@
 							"Local Path Provisioner": "0.0.36",
 							"NFS Provisioner": "4.0.18",
 							"Metallb": "0.16.1",
-							"Kserve": "0.19.0",
 							"Prometheus Stack": "86.2.3",
 							"Prometheus Adapter": "5.3.0",
 							"Grafana Operator": "5.24.0",
-							"Elastic Stack": "9.4.2",
-							"LeaderWorkerSet": "0.8.0",
-							"Volcano": "1.15.0"
+							"Elastic Stack": "9.4.2"
 						}
 					}
 				]
@@ -124,13 +115,10 @@
 							"Local Path Provisioner": "0.0.36",
 							"NFS Provisioner": "4.0.18",
 							"Metallb": "0.16.1",
-							"Kserve": "0.19.0",
 							"Prometheus Stack": "86.2.3",
 							"Prometheus Adapter": "5.3.0",
 							"Grafana Operator": "5.24.0",
-							"Elastic Stack": "9.4.2",
-							"LeaderWorkerSet": "0.8.0",
-							"Volcano": "1.15.0"
+							"Elastic Stack": "9.4.2"
 						}
 					}
 				]
@@ -157,13 +145,10 @@
 							"Local Path Provisioner": "0.0.35",
 							"NFS Provisioner": "4.0.18",
 							"Metallb": "0.15.3",
-							"Kserve": "0.18.0",
 							"Prometheus Stack": "84.5.0",
 							"Prometheus Adapter": "5.3.0",
 							"Grafana Operator": "5.22.2",
-							"Elastic Stack": "9.4.0",
-							"LeaderWorkerSet": "0.8.0",
-							"Volcano": "1.14.1"
+							"Elastic Stack": "9.4.0"
 						}
 					}
 				]
@@ -190,13 +175,10 @@
 							"Local Path Provisioner": "0.0.31",
 							"NFS Provisioner": "4.0.18",
 							"Metallb": "0.15.3",
-							"Kserve": "0.16.0",
 							"Prometheus Stack": "79.9.0",
 							"Prometheus Adapter": "5.2.0",
 							"Grafana Operator": "5.18.0",
-							"Elastic Stack": "9.2.1",
-							"LeaderWorkerSet": "0.7.0",
-							"Volcano": "1.13.0"
+							"Elastic Stack": "9.2.1"
 						}
 					}
 				]
@@ -223,13 +205,10 @@
 							"Local Path Provisioner": "0.0.31",
 							"NFS Provisioner": "4.0.18",
 							"Metallb": "0.15.3",
-							"Kserve": "0.16.0",
 							"Prometheus Stack": "79.9.0",
 							"Prometheus Adapter": "5.2.0",
 							"Grafana Operator": "5.18.0",
-							"Elastic Stack": "9.2.1",
-							"LeaderWorkerSet": "0.7.0",
-							"Volcano": "1.13.0"
+							"Elastic Stack": "9.2.1"
 						}
 					}
 				]
@@ -296,13 +275,10 @@
 							"Local Path Provisioner": "0.0.31",
 							"NFS Provisioner": "4.0.18",
 							"Metallb": "0.15.3",
-							"Kserve": "0.16.0",
 							"Prometheus Stack": "79.9.0",
 							"Prometheus Adapter": "5.2.0",
 							"Grafana Operator": "5.18.0",
-							"Elastic Stack": "9.2.1",
-							"LeaderWorkerSet": "0.7.0",
-							"Volcano": "1.13.0"
+							"Elastic Stack": "9.2.1"
 						}
 					}
 				]

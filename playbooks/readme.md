@@ -128,13 +128,10 @@ kai_scheduler_version: "0.10.2"
 local_path_provisioner: "0.0.31"
 nfs_provisioner: "4.0.18"
 metallb_version: "0.15.3"
-kserve_version: "0.16.0"
 prometheus_stack: "79.9.0"
 prometheus_adapter: "5.2.0"
 grafana_operator: "5.18.0"
 elastic_stack: "9.2.1"
-lws_version: "0.7.0"
-volcano_version: "1.13.0"
 
 # GPU Operator Values
 enable_gpu_operator: yes
@@ -200,8 +197,6 @@ enable_nsight_operator: no
 # Install NVIDIA NIM Operator
 enable_nim_operator: no
 
-# LeaderWorkerSet https://github.com/kubernetes-sigs/lws/tree/main
-lws: no
 
 # Local Path Provisioner and NFS Provisoner as Storage option
 storage: no
@@ -209,8 +204,6 @@ storage: no
 # Monitoring Stack Prometheus/Grafana with GPU Metrics and Elastic Logging stack
 monitoring: no
 
-# Enable Kserve on Cloud Native Stack with Istio and Cert-Manager
-kserve: no
 
 # Install MetalLB
 loadbalancer: no
@@ -218,8 +211,6 @@ loadbalancer: no
 loadbalancer_ip: ""
 kubernetes_host_ip: ""
 
-# Enable Volcano Scheduler
-volcano: no
 
 ## Cloud Native Stack Validation
 cns_validation: no
@@ -445,329 +436,6 @@ cns_version: 16.1
 
 microk8s: yes
 ```
-
-### Enable LeaderWorkerSet 
-
-If you want to use LWS you can enable the configuration in `cns_values_xx.yaml` and trigger the installation
-
-Example:
-```
-$ nano cns_values_16.1.yaml
-
-cns_version: 16.1
-
-lws: yes
-```
-For more information, Refer [LeaderWorkerSet](https://github.com/kubernetes-sigs/lws/tree/main). Examples can be found [here](https://github.com/kubernetes-sigs/lws/blob/main/docs/examples/sample/README.md)
-
-### Enable Kserve on CNS
-
-If you want to use Kserve on CNS, you can enable the configuration in `cns_values_xx.yaml` and trigger the installation
-
-`NOTE:` It's recommned to enable the [loadbalancer](#load-balancer-on-cns), [storage](#storage-on-cns) and [monitoring](#monitoring-on-cns) option as `yes` in `cns_values_xx.yaml` for Kserve 
-
-Example: 
-```
-nano cns_values_16.1.yaml
-
-# Local Path Provisioner and NFS Provisoner as Storage option
-storage: yes
-
-# Monitoring Stack Prometheus/Grafana with GPU Metrics and Elastic Logging stack
-monitoring: yes
-
-# Enable Kserve on Cloud Native Stack with Istio and Cert-Manager
-kserve: yes
-
-# Install MetalLB
-loadbalancer: yes
-# Example input loadbalancer_ip: "10.117.20.50/32", , it could be system IP
-loadbalancer_ip: "10.110.10.2/32"
-```
-
-For more information please refer [Kserve](https://github.com/kserve/kserve)
-
-#### Kserve Validation
-
-`NOTE:` This will create a Inference Resources on the cluster, please cleanup once you're done with Validation
-
-##### Example: Deploying Sample Application  
-
-First, create a namespace to use for deploying KServe resources:
-
-```
-kubectl create namespace kserve-test
-```
-
-Create Inference Service
-
-```
-kubectl apply -n kserve-test -f - <<EOF
-apiVersion: "serving.kserve.io/v1beta1"
-kind: "InferenceService"
-metadata:
-  name: "sklearn-iris"
-spec:
-  predictor:
-    model:
-      modelFormat:
-        name: sklearn
-      storageUri: "gs://kfserving-examples/models/sklearn/1.0/model"
-EOF
-```
-Please wait a minute to create the Inference Service and check the status 
-
-```
-kubectl get inferenceservices sklearn-iris -n kserve-test
-```
-
-Expected OutPut:
-
-```
-NAME           URL                                                 READY   PREV   LATEST   PREVROLLEDOUTREVISION   LATESTREADYREVISION                    AGE
-sklearn-iris   http://sklearn-iris.kserve-test.example.com         True           100                              sklearn-iris-predictor-default-47q2g   23h
-```
-
-Determine the ingress IP and ports
-
-```
-kubectl get svc istio-ingressgateway -n istio-system
-```
-
-If the EXTERNAL-IP value is set, your environment has an external load balancer that you can use for the ingress gateway.
-
-```
-export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
-```
-
-If Load Balancer is not enabled on Cloud Native Stack, you can access the gateway using the service’s node port.
-```
-export INGRESS_HOST=$(kubectl get po -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].status.hostIP}')
-export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
-```
-
-Create the Inference Input Request File
-
-```
-cat <<EOF > "./iris-input.json"
-{
-  "instances": [
-    [6.8,  2.8,  4.8,  1.4],
-    [6.0,  3.4,  4.5,  1.6]
-  ]
-}
-EOF
-```
-Run curl with the ingress gateway external IP using the HOST Header.
-
-```
-SERVICE_HOSTNAME=$(kubectl get inferenceservice sklearn-iris -n kserve-test -o jsonpath='{.status.url}' | cut -d "/" -f 3)
-curl -H "Host: ${SERVICE_HOSTNAME}" -H "Content-Type: application/json" "http://${INGRESS_HOST}:${INGRESS_PORT}/v1/models/sklearn-iris:predict" -d @./iris-input.json
-```
-
-Expected Output:
-```
-{"predictions": [1, 1]}
-```
-
-Cleanup:
-```
-kubectl delete inferenceservices sklearn-iris -n kserve-test
-```
-
-For more infomration about sample validation, Please refer [here](https://kserve.github.io/website/0.12/get_started/first_isvc/)
-
-##### Example: Deploying NIM on top of KServe
-
-1. Execute the below command to create `kserve-nim.yaml` 
-
-  ```
-  cat <<EOF | tee kserve-nim.yaml
-  apiVersion: v1
-  kind: Secret
-  metadata:
-    name: nvidia-nim-secrets
-  data:
-    HF_TOKEN: \${HF_TOKEN}
-    NGC_API_KEY: \${NGC_API_KEY}
-  type: Opaque
-  ---
-  apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    name: nvidia-nim-pvc
-  spec:
-    accessModes:
-      - ReadWriteMany
-    storageClassName: nfs-client
-    resources:
-      requests:
-        storage: 200G
-  ---
-  apiVersion: serving.kserve.io/v1alpha1
-  kind: ClusterServingRuntime
-  metadata:
-    name: nvidia-nim-llama3-8b-instruct-24.05
-  spec:
-    annotations:
-      prometheus.kserve.io/path: /metrics
-      prometheus.kserve.io/port: "8000"
-      serving.kserve.io/enable-metric-aggregation: "true"
-      serving.kserve.io/enable-prometheus-scraping: "true"
-    containers:
-    - env:
-      - name: NIM_CACHE_PATH
-        value: /opt/nim/.cache
-      - name: HF_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: nvidia-nim-secrets
-            key: HF_TOKEN
-      - name: NGC_API_KEY
-        valueFrom:
-          secretKeyRef:
-            name: nvidia-nim-secrets
-            key: NGC_API_KEY
-      image: nvcr.io/nim/meta/llama3-8b-instruct:1.0.0
-      name: kserve-container
-      ports:
-      - containerPort: 8000
-        protocol: TCP
-      volumeMounts:
-      - mountPath: /dev/shm
-        name: dshm
-    imagePullSecrets:
-    - name: ngc-secret
-    protocolVersions:
-    - v2
-    - grpc-v2
-    supportedModelFormats:
-    - autoSelect: true
-      name: nvidia-nim-llama3-8b-instruct
-      priority: 1
-      version: "24.05"
-    volumes:
-    - emptyDir:
-        medium: Memory
-        sizeLimit: 16Gi
-      name: dshm
-  ---
-  apiVersion: serving.kserve.io/v1beta1
-  kind: InferenceService
-  metadata:
-    annotations:
-      autoscaling.knative.dev/target: "10"
-    name: llama3-8b-instruct-1xgpu
-  spec:
-    predictor:
-      minReplicas: 1
-      model:
-        modelFormat:
-          name: nvidia-nim-llama3-8b-instruct
-        resources:
-          limits:
-            nvidia.com/gpu: "1"
-          requests:
-            nvidia.com/gpu: "1"
-        runtime: nvidia-nim-llama3-8b-instruct-24.05
-        storageUri: pvc://nvidia-nim-pvc/
-  EOF
-  ```
-
-2. Run the below command to update the Knative configuration. 
-
-  ```
-  kubectl patch configmap config-features -n knative-serving --type merge -p '{"data":{"kubernetes.podspec-nodeselector":"enabled"}}'
-  ```
-
-3. Export the `NGC_API_KEY` and `HF_TOKEN` values. 
-  
-  Follow the steps to get 
-
-  - [NGC API KEY](https://docs.nvidia.com/ngc/gpu-cloud/ngc-private-registry-user-guide/index.html#generating-api-key)
-  - [HF TOKEN](https://huggingface.co/docs/hub/en/security-tokens#user-access-tokens)
-  ```
-  export NGC_API_KEY=
-  export HF_TOKEN=
-  ```
-4. Run the below commands to create secrets and NIM with kserve. 
-
-  ```
-  kubectl create secret docker-registry ngc-secret \
-  --docker-server=nvcr.io \
-  --docker-username='$oauthtoken' \
-  --docker-password=${NGC_API_KEY}
-  ```
-
-  ```
-  HF_TOKEN_BASE64=$(echo -n "$HF_TOKEN" | base64 -w0)
-  NGC_API_KEY_BASE64=$(echo -n "$NGC_API_KEY" | base64 -w0)
-  ```
-
-  ```
-  sed -e "s|\${HF_TOKEN}|${HF_TOKEN_BASE64}|g" -e "s|\${NGC_API_KEY}|${NGC_API_KEY_BASE64}|g" kserve-nim.yaml | kubectl apply -f -
-  ```
-
-Please refer [NIM-Deploy](https://github.com/NVIDIA/nim-deploy/tree/main/kserve) to know more about NIM's on KServe. 
-
-###### Check NIM Deployment
-
-Exccute the below commands to check the status of the deployment 
-
-```
-kubectl get inferenceservice
-```
-Example Output:
-```
-NAME                      URL                                                  READY     PREV  LATEST  PREVROLLEDOUTREVISION  LATESTREADYREVISION            AGE
-llama3-8b-instruct-1xgpu  http://llama3-8b-instruct-1xgpu.default.example.com  True      100               llama3-8b-instruct-1xgpu-predictor-00001  5m2s
-```
-
-```
-kubectl get pod
-```
-Example Output:
-```
-NAME                                                             READY  STATUS  RESTARTS  AGE
-llama3-8b-instruct-1xgpu-predictor-00001-deployment-5574b67xmvw  2/2    Running  0        4m30s
-```
-
-###### NIM with Kserve Validation
-
-Execute the below commands to export Inference, Ingress host and port details
-
-  ```
-  SERVICE_HOSTNAME=$(kubectl get inferenceservice llama3-8b-instruct-1xgpu -o jsonpath='{.status.url}' | cut -d "/" -f 3)
-  export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-  export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
-  ```
-
-Run the below command to find the available models
-
-  ```
-  curl -X 'GET' \
-      -H "Host: ${SERVICE_HOSTNAME}" \
-      "http://${INGRESS_HOST}:${INGRESS_PORT}/v1/models" \
-      -H 'accept: application/json' \
-      -H 'Content-Type: application/json'
-  ```
-
-Run the below command to get the response from Inference. 
-
-  ```
-  curl -X 'POST' \
-      -H "Host: ${SERVICE_HOSTNAME}" \
-      "http://${INGRESS_HOST}:${INGRESS_PORT}/v1/completions" \
-      -H 'accept: application/json' \
-      -H 'Content-Type: application/json' \
-      -d '{
-  "model": "meta/llama3-8b-instruct",
-  "prompt": "Once upon a time",
-  "max_tokens": 64
-  }'
-  ```
-
 
 ### Monitoring on CNS
 

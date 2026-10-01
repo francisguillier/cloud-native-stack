@@ -91,12 +91,11 @@ export GITHUB_TOKEN="ghp_your_token_here"
 - CRI-Docker, Calico
 - NVIDIA Container Toolkit
 - Helm, Local Path Provisioner
-- MetalLB, KServe
+- MetalLB
 - Grafana Operator, Elasticsearch
 - GPU Operator, Network Operator
 - NIM Operator, DRA Driver
-- Dynamo, Volcano, KAI Scheduler
-- LeaderWorkerSet (LWS)
+- Dynamo, KAI Scheduler
 
 ### Version-Locked Components
 - Kubernetes (maintains major.minor)

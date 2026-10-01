@@ -26,12 +26,10 @@ nsight_operator_version: "1.1.2"
 local_path_provisioner: "0.0.31"
 nfs_provisioner: "4.0.18"
 metallb_version: "0.15.2"
-kserve_version: "0.15"
 prometheus_stack: "75.9.0"
 prometheus_adapter: "4.14.1"
 grafana_operator: "v5.18.0"
 elastic_stack: "9.0.0"
-lws_version: "0.6.2"
 
 # GPU Operator Values
 enable_gpu_operator: yes
@@ -94,8 +92,6 @@ enable_nsight_operator: no
 # Install NVIDIA NIM Operator
 enable_nim_operator: no
 
-# LeaderWorkerSet https://github.com/kubernetes-sigs/lws/tree/main
-lws: no
 
 # Local Path Provisioner and NFS Provisoner as Storage option
 storage: no
@@ -103,8 +99,6 @@ storage: no
 # Monitoring Stack Prometheus/Grafana with GPU Metrics and Elastic Logging stack
 monitoring: no
 
-# Enable Kserve on Cloud Native Stack with Istio and Cert-Manager
-kserve: no
 
 # Install MetalLB
 loadbalancer: no
