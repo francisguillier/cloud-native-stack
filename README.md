@@ -42,7 +42,7 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 | :-----:                   | :-----: | :-----: | :-----: |
 | Kubernetes                | 1.36.2  | 1.35.6  | 1.34.9  |
 | Platforms                 | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> |
-| Supported OS              | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS (confidential computing only)</li></ul> | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS (confidential computing only)</li></ul> | <ul><li>Ubuntu 24.04 LTS</li></ul> |
+| Supported OS              | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS</li></ul> | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS</li></ul> | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS</li></ul> |
 | Containerd                | 2.4.1   | 2.4.1   | 2.4.1   |
 | NVIDIA Container Toolkit  | 1.20.1  | 1.20.1  | 1.20.1  |
 | CRI-O                     | 1.36.1  | 1.35.4  | 1.34.9  |
