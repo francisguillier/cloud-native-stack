@@ -1,0 +1,124 @@
+cns_version: 20.0
+
+## MicroK8s cluster
+microk8s: no
+## Kubernetes Install with Kubeadm
+install_k8s: yes
+
+## Components Versions
+# Container Runtime options are containerd, cri-o
+container_runtime: "containerd"
+containerd_version: "2.4.1"
+runc_version: "1.4.3"
+cni_plugins_version: "1.9.1"
+containerd_max_concurrent_downloads: "5"
+nvidia_container_toolkit_version: "1.20.1"
+docker_ce_version: "29.4.3"
+docker_ce_apt_version: "5:{{ docker_ce_version }}-1~ubuntu.{{ ansible_facts['distribution_version'] }}~{{ ansible_facts['distribution_release'] }}"
+docker_apt_arch: "{{ 'arm64' if ansible_facts['architecture'] == 'aarch64' else 'amd64' }}"
+crio_version: "1.36.1"
+cri_dockerd_version: "0.4.3"
+k8s_version: "1.37.1"
+calico_version: "3.32.0"
+flannel_version: "0.28.5"
+helm_version: "4.3.0"
+gpu_operator_version: "26.7.1"
+network_operator_version: "26.7.0"
+local_path_provisioner: "0.0.36"
+nfs_provisioner: "4.0.18"
+metallb_version: "0.16.1"
+prometheus_stack: "86.2.3"
+prometheus_adapter: "5.3.0"
+grafana_operator: "5.24.0"
+elastic_stack: "9.4.2"
+ingress_controller_version: "4.15.1"
+
+# GPU Operator Values
+enable_gpu_operator: yes
+confidential_computing: no
+gpu_driver_version: "580.178.04"
+use_open_kernel_module: no
+enable_mig: no
+mig_profile: all-disabled
+mig_strategy: single
+# To use GDS, use_open_kernel_module needs to be enabled
+enable_gds: no
+#Secure Boot for only Ubuntu
+enable_secure_boot: no
+enable_cdi: no
+enable_vgpu: no
+vgpu_license_server: ""
+# URL of Helm repo to be added. If using NGC get this from the fetch command in the console
+helm_repository: "https://helm.ngc.nvidia.com/nvidia"
+# Name of the helm chart to be deployed
+gpu_operator_helm_chart: nvidia/gpu-operator
+## This is most likely GPU Operator Driver Registry
+gpu_operator_driver_registry: "nvcr.io/nvidia"
+
+# NGC Values
+## If using a private/protected registry. NGC API Key. Leave blank for public registries
+ngc_registry_password: ""
+## This is most likely an NGC email
+ngc_registry_email: ""
+ngc_registry_username: "$oauthtoken"
+
+# Network Operator Values
+## If the Network Operator is yes then make sure enable_rdma as well yes
+enable_network_operator: no
+## Enable RDMA yes for NVIDIA Certification
+enable_rdma: no
+## Enable for MLNX-OFED Driver Deployment
+deploy_ofed: no
+
+# Prxoy Configuration
+proxy: no
+http_proxy: ""
+https_proxy: ""
+
+# Cloud Native Stack for Developers Values
+## Enable for Cloud Native Stack Developers
+cns_docker: no
+## Enable For Cloud Native Stack Developers with TRD Driver
+cns_nvidia_driver: no
+nvidia_driver_mig: no
+
+## Kubernetes resources
+k8s_apt_key: "https://pkgs.k8s.io/core:/stable:/v1.37/deb/Release.key"
+k8s_gpg_key: "https://pkgs.k8s.io/core:/stable:/v1.37/rpm/repodata/repomd.xml.key"
+k8s_apt_ring: "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
+k8s_registry: "registry.k8s.io"
+
+
+
+
+
+# Local Path Provisioner and NFS Provisoner as Storage option
+storage: no
+
+# Monitoring Stack Prometheus/Grafana with GPU Metrics and Elastic Logging stack
+monitoring: no
+
+
+# Install Ingress Controller
+ingress_controller: no
+
+# Install MetalLB
+loadbalancer: no
+# Example input loadbalancer_ips: ["10.78.17.85/32","10.78.17.86/32"]
+loadbalancer_ips: []
+# Kubernetes Host IP is the IP of the host where the Kubernetes cluster is running, If it is not set, the playbook will use the first IP address from the host IP list.
+# Example input kubernetes_host_ip: "10.78.17.87"
+kubernetes_host_ip: ""
+
+# Install Knative Serving
+knative_serving: no
+runai_inference_domain: ""
+
+
+## Cloud Native Stack Validation
+cns_validation: no
+
+# BMC Details for Confidential Computing
+bmc_ip:
+bmc_username:
+bmc_password:

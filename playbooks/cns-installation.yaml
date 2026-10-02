@@ -19,12 +19,12 @@
         install_k8s: "{{ install_k8s}}"
 
     # Print a warning (do NOT fail) when the host OS doesn't match the expected
-    # Ubuntu release for the chosen cns_version. CNS 18.1 / 19.1 are validated on
-    # Ubuntu 24.04 / 26.04; CNS 16.x / 17.x are validated on Ubuntu 22.04 / 24.04.
+    # Ubuntu release for the chosen cns_version. CNS 18.1 / 19.1 / 20.0 target
+    # Ubuntu 24.04 / 26.04; CNS 16.x / 17.x target Ubuntu 22.04 / 24.04.
     - name: Warn if Ubuntu version mismatches cns_version
       when:
         - ansible_facts['distribution'] == 'Ubuntu'
-        - (cns_version | string in ['18.1', '19.1'] and ansible_facts['distribution_version'] not in ['24.04', '26.04'])
+        - (cns_version | string in ['18.1', '19.1', '20.0'] and ansible_facts['distribution_version'] not in ['24.04', '26.04'])
           or
           (cns_version | string in ['16.0', '16.1', '17.0', '17.2'] and ansible_facts['distribution_version'] not in ['22.04', '24.04'])
       debug:
@@ -32,7 +32,7 @@
           ============================================================
           WARNING: Ubuntu {{ ansible_facts['distribution_version'] }} is not the
           recommended OS for CNS {{ cns_version }}.
-            CNS 18.1 / 19.1  -> Ubuntu 24.04 or 26.04
+            CNS 18.1 / 19.1 / 20.0  -> Ubuntu 24.04 or 26.04
             CNS 16.x / 17.x  -> Ubuntu 22.04 or 24.04
           Continuing anyway. Proceed at your own risk.
           ============================================================
