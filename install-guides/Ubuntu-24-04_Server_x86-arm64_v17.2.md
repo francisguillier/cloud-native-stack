@@ -1,12 +1,12 @@
-# NVIDIA Cloud Native Stack v17.1 - Install Guide for Ubuntu Server
+# NVIDIA Cloud Native Stack v17.2 - Install Guide for Ubuntu Server
 ## Introduction
 
 This document describes how to setup the NVIDIA Cloud Native Stack collection on a single or multiple NVIDIA Certified Systems. NVIDIA Cloud Native Stack can be configured to create a single node Kubernetes cluster or to create/add additional worker nodes to join an existing cluster.
 
-NVIDIA Cloud Native Stack v17.1 includes:
+NVIDIA Cloud Native Stack v17.2 includes:
 - Ubuntu 24.04 LTS
 - Containerd 2.3.0
-- Kubernetes version 1.34.6
+- Kubernetes version 1.34.12
 - Helm 4.1.4
 - NVIDIA GPU Operator 26.3.1
   - NVIDIA GPU Driver: 580.126.20
@@ -265,7 +265,7 @@ Now execute the below to install kubelet, kubeadm, and kubectl:
 ```
 
 ```
- sudo apt install -y -q kubelet=1.34.6-1.1  kubectl=1.34.6-1.1  kubeadm=1.34.6-1.1 
+ sudo apt install -y -q kubelet=1.34.12-1.1  kubectl=1.34.12-1.1  kubeadm=1.34.12-1.1
 ```
 
 ```
@@ -319,13 +319,13 @@ UUID=DCD4-535C /boot/efi vfat defaults 0 0
 Execute the following command for `Containerd` systems:
 
 ```
-sudo kubeadm init --pod-network-cidr=192.168.32.0/22 --cri-socket=/run/containerd/containerd.sock --kubernetes-version="v1.34.6"
+sudo kubeadm init --pod-network-cidr=192.168.32.0/22 --cri-socket=/run/containerd/containerd.sock --kubernetes-version="v1.34.12"
 ```
 
 Eecute the following command for `CRI-O` systems:
 
 ```
-sudo kubeadm init --pod-network-cidr=192.168.32.0/22 --cri-socket=unix:/run/crio/crio.sock --kubernetes-version="v1.34.6"
+sudo kubeadm init --pod-network-cidr=192.168.32.0/22 --cri-socket=unix:/run/crio/crio.sock --kubernetes-version="v1.34.12"
 ```
 
 Output:
@@ -410,7 +410,7 @@ Output:
 
 ```
 NAME             STATUS   ROLES                  AGE   VERSION
-#yourhost        Ready    control-plane          10m   v1.34.6
+#yourhost        Ready    control-plane          10m   v1.34.12
 ```
 
 Since we are using a single-node Kubernetes cluster, the cluster will not schedule pods on the control plane node by default. To schedule pods on the control plane node, we have to remove the taint by executing the following command:
@@ -497,8 +497,8 @@ Output:
 
 ```
 NAME             STATUS   ROLES                  AGE   VERSION
-#yourhost        Ready    control-plane          10m   v1.34.6
-#yourhost-worker Ready                           10m   v1.34.6
+#yourhost        Ready    control-plane          10m   v1.34.12
+#yourhost-worker Ready                           10m   v1.34.12
 ```
 
 ### Installing NVIDIA Network Operator

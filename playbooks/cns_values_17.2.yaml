@@ -1,4 +1,4 @@
-cns_version: 17.1
+cns_version: 17.2
 
 ## MicroK8s cluster
 microk8s: no
@@ -18,7 +18,7 @@ docker_ce_apt_version: "5:{{ docker_ce_version }}-1~ubuntu.{{ ansible_facts['dis
 docker_apt_arch: "{{ 'arm64' if ansible_facts['architecture'] == 'aarch64' else 'amd64' }}"
 crio_version: "1.34.9"
 cri_dockerd_version: "0.4.3"
-k8s_version: "1.34.9"
+k8s_version: "1.34.12"
 calico_version: "3.32.0"
 flannel_version: "0.28.5"
 helm_version: "4.3.0"

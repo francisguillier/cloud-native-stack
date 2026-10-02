@@ -26,7 +26,7 @@
         - ansible_facts['distribution'] == 'Ubuntu'
         - (cns_version | string in ['18.1', '19.1'] and ansible_facts['distribution_version'] not in ['24.04', '26.04'])
           or
-          (cns_version | string in ['16.0', '16.1', '17.0', '17.1'] and ansible_facts['distribution_version'] not in ['22.04', '24.04'])
+          (cns_version | string in ['16.0', '16.1', '17.0', '17.2'] and ansible_facts['distribution_version'] not in ['22.04', '24.04'])
       debug:
         msg: |
           ============================================================
