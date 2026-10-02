@@ -80,7 +80,7 @@ Cloud Native Stack Supports below versions.
 
 Available versions are:
 
-- 19.0
+- 19.1
 - 18.0
 - 17.1
 - 17.0

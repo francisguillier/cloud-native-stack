@@ -341,7 +341,7 @@
         echo -e "Please validate between Target Version and Installed Version listed above"
 
     - name: Componenets Target Versions Vs Installed Versions
-      when: cns_docker == false and (cns_version == 19.0 or cns_version == 18.0 or cns_version == 17.1)
+      when: cns_docker == false and (cns_version == 19.1 or cns_version == 18.0 or cns_version == 17.1)
       register: compare_2632
       args:
         executable: /bin/bash
@@ -456,7 +456,7 @@
         echo -e "Please validate between Target Version and Installed Version listed above"
 
     - name: Componenets Target Versions Vs Installed Versions
-      when: cns_docker == true and (cns_version == 19.0 or cns_version == 18.0 or cns_version == 17.1)
+      when: cns_docker == true and (cns_version == 19.1 or cns_version == 18.0 or cns_version == 17.1)
       register: compare_2632docker
       args:
         executable: /bin/bash
@@ -582,7 +582,7 @@
         msg: "{{ compare_170.stdout_lines }}"
 
     - name: Report Versions
-      when: cns_docker == false and (cns_version == 19.0 or cns_version == 18.0 or cns_version == 17.1)
+      when: cns_docker == false and (cns_version == 19.1 or cns_version == 18.0 or cns_version == 17.1)
       debug:
         msg: "{{ compare_2632.stdout_lines }}"
 
@@ -602,7 +602,7 @@
         msg: "{{ compare_170docker.stdout_lines }}"
 
     - name: Report Versions
-      when: cns_docker == true and (cns_version == 19.0 or cns_version == 18.0 or cns_version == 17.1)
+      when: cns_docker == true and (cns_version == 19.1 or cns_version == 18.0 or cns_version == 17.1)
       debug:
         msg: "{{ compare_2632docker.stdout_lines }}"
 
