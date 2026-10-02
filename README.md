@@ -44,13 +44,17 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 | Platforms                 | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> |
 | Supported OS              | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS (confidential computing only)</li></ul> | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS (confidential computing only)</li></ul> | <ul><li>Ubuntu 24.04 LTS</li></ul> |
 | Containerd                | 2.4.1   | 2.4.1   | 2.4.1   |
-| NVIDIA Container Toolkit  | 1.19.1  | 1.19.1  | 1.19.1  |
+| NVIDIA Container Toolkit  | 1.20.1  | 1.20.1  | 1.20.1  |
 | CRI-O                     | 1.36.1  | 1.35.4  | 1.34.9  |
 | CNI (Calico)              | 3.32.0  | 3.32.0  | 3.32.0  |
 | NVIDIA GPU Operator       | 26.7.1  | 26.7.1  | 26.7.1  |
 | NVIDIA Network Operator   | 26.7.0  | 26.7.0  | 26.7.0  |
 | NVIDIA Data Center Driver | 580.178.04 | 580.178.04 | 580.178.04 |
-| Helm                      | 4.2.2   | 4.2.2   | 4.2.2   |
+| Helm                      | 4.3.0   | 4.3.0   | 4.3.0   |
+
+Helm defaults to `4.3.0` in all playbook values files. To select another release, set `helm_version` in the values file for your CNS version. See the [Helm 4.3.0 release notes](https://github.com/helm/helm/releases/tag/v4.3.0).
+
+NVIDIA Container Toolkit defaults to `1.20.1` in all playbook values files. To select another release, set `nvidia_container_toolkit_version` in the values file for your CNS version. See the [Container Toolkit 1.20.1 release notes](https://github.com/NVIDIA/nvidia-container-toolkit/releases/tag/v1.20.1).
 
 NVIDIA Network Operator defaults to `26.7.0` in all playbook values files. To select another release, set `network_operator_version` in the values file for your CNS version. See the [Network Operator 26.7.0 release notes](https://docs.nvidia.com/networking/display/kubernetes2670/release-notes.html).
 

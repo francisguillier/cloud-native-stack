@@ -337,7 +337,7 @@
     - name: install NVIDIA container runtime and NVIDIA Docker on RHEL
       when: nvidia_docker_exists.rc >= 1 and cns_version >= 10.0 and ansible_facts['distribution'] == 'RedHat'
       yum:
-        name: ['nvidia-container-toolkit', 'nvidia-docker2']
+        name: ['nvidia-container-toolkit-{{ nvidia_container_toolkit_version }}-1', 'nvidia-container-toolkit-base-{{ nvidia_container_toolkit_version }}-1', 'libnvidia-container-tools-{{ nvidia_container_toolkit_version }}-1', 'libnvidia-container1-{{ nvidia_container_toolkit_version }}-1']
         state: present
         update_cache: yes
       retries: 5

@@ -3,6 +3,8 @@ cnc_version: 5.2
 # GPU Operator Values
 enable_gpu_operator: yes
 gpu_driver_version: "580.178.04"
+nvidia_container_toolkit_version: "1.20.1"
+helm_version: "4.3.0"
 enable_mig: no
 mig_profile: all-disabled
 mig_strategy: single

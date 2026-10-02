@@ -4,8 +4,9 @@ cnc_version: 6.3
 # Container Runtime options are containerd, cri-o
 container_runtime: "containerd"
 containerd_version: "2.4.1"
+nvidia_container_toolkit_version: "1.20.1"
 k8s_version: "1.23.12"
-helm_version: "3.10.0"
+helm_version: "4.3.0"
 gpu_operator_version: "26.7.1"
 network_operator_version: "26.7.0"
 

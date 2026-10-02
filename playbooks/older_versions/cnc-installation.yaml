@@ -205,10 +205,10 @@
      args:
        warn: false
      with_items:
-       - curl -O https://get.helm.sh/helm-v3.1.0-linux-amd64.tar.gz
-       - tar -xvzf helm-v3.1.0-linux-amd64.tar.gz
+       - curl -O https://get.helm.sh/helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz
+       - tar -xvzf helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz
        - cp linux-amd64/helm /usr/bin/
-       - rm -rf helm-v3.1.0-linux-amd64.tar.gz linux-amd64
+       - rm -rf helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz linux-amd64
      when: "cnc_version == 1.2 or cnc_version == 2.0 and helm_exists.rc > 0"
 
    - name: Installing the GPU Operator on NVIDIA Cloud Native Core 1.2 or 2.0
@@ -228,10 +228,10 @@
      args:
        warn: false
      with_items:
-       - curl -O https://get.helm.sh/helm-v3.3.3-linux-amd64.tar.gz
-       - tar -xvzf helm-v3.3.3-linux-amd64.tar.gz
+       - curl -O https://get.helm.sh/helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz
+       - tar -xvzf helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz
        - cp linux-amd64/helm /usr/local/bin/
-       - rm -rf helm-v3.3.3-linux-amd64.tar.gz linux-amd64
+       - rm -rf helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz linux-amd64
      when: "cnc_version == 1.3 or cnc_version == 3.1 and helm_exists.rc > 0"
 
    - name: "Install Helm on NVIDIA Cloud Native Core 4.0"
@@ -240,10 +240,10 @@
      args:
        warn: false
      with_items:
-       - curl -O https://get.helm.sh/helm-v3.5.4-linux-amd64.tar.gz
-       - tar -xvzf helm-v3.5.4-linux-amd64.tar.gz
+       - curl -O https://get.helm.sh/helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz
+       - tar -xvzf helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz
        - cp linux-amd64/helm /usr/local/bin/
-       - rm -rf helm-v3.5.4-linux-amd64.tar.gz linux-amd64
+       - rm -rf helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz linux-amd64
      when: "cnc_version == 4.0 and helm_exists.rc > 0"
 
    - name: "Install Helm on NVIDIA Cloud Native Core 4.1"
@@ -252,10 +252,10 @@
      args:
        warn: false
      with_items:
-       - curl -O https://get.helm.sh/helm-v3.6.2-linux-amd64.tar.gz
-       - tar -xvzf helm-v3.6.2-linux-amd64.tar.gz
+       - curl -O https://get.helm.sh/helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz
+       - tar -xvzf helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz
        - cp linux-amd64/helm /usr/local/bin/
-       - rm -rf helm-v3.6.2-linux-amd64.tar.gz linux-amd64
+       - rm -rf helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz linux-amd64
      when: "helm_exists.rc > 0 and cnc_version == 4.1"
 
    - name: "Install Helm on NVIDIA Cloud Native Core 4.2"
@@ -264,10 +264,10 @@
      args:
        warn: false
      with_items:
-       - curl -O https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz
-       - tar -xvzf helm-v3.7.0-linux-amd64.tar.gz
+       - curl -O https://get.helm.sh/helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz
+       - tar -xvzf helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz
        - cp linux-amd64/helm /usr/local/bin/
-       - rm -rf helm-v3.7.0-linux-amd64.tar.gz linux-amd64
+       - rm -rf helm-v{{ helm_version | default('4.3.0') }}-linux-amd64.tar.gz linux-amd64
      when: "cnc_version == 4.2 and helm_exists.rc > 0"
 
    - name: Checking Nouveau is disabled
