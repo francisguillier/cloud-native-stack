@@ -30,7 +30,7 @@ When NVIDIA Cloud Native Stack batch is released, the previous batch enters main
 | [25.12.1](https://github.com/NVIDIA/cloud-native-stack/releases/tag/v25.12.1)                   | Maintenance |
 | [25.12.0](https://github.com/NVIDIA/cloud-native-stack/releases/tag/v25.12.0)                   | EOL |
 
-`NOTE:` CNS 18.0 and above support Ubuntu 24.04 and Ubuntu 26.04. See the component matrix for deployment restrictions.
+`NOTE:` CNS 18.1 and above support Ubuntu 24.04 and Ubuntu 26.04. See the component matrix for deployment restrictions.
 
 For upstream release information, see [Cloud Native Stack Releases](https://github.com/NVIDIA/cloud-native-stack/releases)
 
@@ -38,9 +38,9 @@ For upstream release information, see [Cloud Native Stack Releases](https://gith
 
 #### Cloud Native Stack Batch 26.6.0 (Release Date: 1 July 2026)
 
-| CNS Version               | 19.1    | 18.0    | 17.1    |
+| CNS Version               | 19.1    | 18.1    | 17.1    |
 | :-----:                   | :-----: | :-----: | :-----: |
-| Kubernetes                | 1.36.5  | 1.35.6  | 1.34.9  |
+| Kubernetes                | 1.36.5  | 1.35.9  | 1.34.9  |
 | Platforms                 | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> | <ul><li>NVIDIA Certified Server (x86 & arm64)</li></ul> |
 | Supported OS              | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS</li></ul> | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS</li></ul> | <ul><li>Ubuntu 24.04 LTS</li><li>Ubuntu 26.04 LTS</li></ul> |
 | Containerd                | 2.4.1   | 2.4.1   | 2.4.1   |
@@ -64,7 +64,7 @@ containerd defaults to `2.4.1` in all playbook values files. To select another r
 
 GPU Operator defaults to `26.7.1` in all playbook values files. To select another release, set `gpu_operator_version` in the values file for your CNS version. See the [GPU Operator 26.7 release notes](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/26.7/release-notes.html) and [platform support matrix](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/26.7/platform-support.html) for component versions and supported configurations.
 
-> NOTE: CNS 18.0 and 19.1 target Ubuntu 24.04 and Ubuntu 26.04. CNS 17.1 targets Ubuntu 24.04.
+> NOTE: CNS 18.1 and 19.1 target Ubuntu 24.04 and Ubuntu 26.04. CNS 17.1 targets Ubuntu 24.04.
 > NOTE: NVIDIA Network Operator 26.7.0 supports Kubernetes 1.32 through 1.36, covering the CNS versions in this matrix. See the [Network Operator platform support matrix](https://docs.nvidia.com/networking/display/kubernetes2670/platform-support.html) for hardware and operating system requirements.
 
 > Note: Previous upstream Cloud Native Stack release information can be found [here](https://github.com/NVIDIA/cloud-native-stack/tree/25.7.2?tab=readme-ov-file#nvidia-cloud-native-stack-component-matrix)
@@ -83,7 +83,7 @@ GPU Operator defaults to `26.7.1` in all playbook values files. To select anothe
 - [Load balancer on CNS](./playbooks/readme.md#load-balancer-on-cns)
 - [Ingress Controller and Knative Serving configuration](./playbooks/cns_values_19.1.yaml)
 
-| CNS Version               | 19.1    | 18.0    | 17.1    |
+| CNS Version               | 19.1    | 18.1    | 17.1    |
 | :-----:                   | :-----: | :-----: | :-----: |
 | MicroK8s                  | 1.36    | 1.35    | 1.34    |
 | Ingress Controller        | 4.15.1  | 4.15.1  | 4.15.1  |
